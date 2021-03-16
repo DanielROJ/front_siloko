@@ -5,10 +5,11 @@ import { ModuloGestionClientesRoutingModule } from './modulo-gestion-clientes-ro
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 import { GestionCupoClienteComponent } from './gestion-cupo-cliente/gestion-cupo-cliente.component';
 import { ListaSolicitudesCreditoComponent } from './lista-solicitudes-credito/lista-solicitudes-credito.component';
+import { BusquedaClientesComponent } from './busqueda-clientes/busqueda-clientes.component';
 
 
 @NgModule({
-  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent],
+  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent],
   imports: [
     CommonModule,
     ModuloGestionClientesRoutingModule
