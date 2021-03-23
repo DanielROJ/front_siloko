@@ -1,4 +1,4 @@
-
+@import '~@sweetalert2/theme-dark/dark.scss';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -12,15 +12,15 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontSiloko-primary: mat-palette($mat-indigo);
-$frontSiloko-accent: mat-palette($mat-pink, A200, A100, A400);
+$frontSiloko-primary: mat-palette($mat-amber);
+$frontSiloko-accent: mat-palette($mat-amber, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $frontSiloko-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$frontSiloko-theme: mat-light-theme((
+$frontSiloko-theme: mat-dark-theme((
   color: (
     primary: $frontSiloko-primary,
     accent: $frontSiloko-accent,
@@ -32,4 +32,14 @@ $frontSiloko-theme: mat-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($frontSiloko-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent:  mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+ 
+ 
+  @include angular-material-theme($alternate-theme);
+
+}
 

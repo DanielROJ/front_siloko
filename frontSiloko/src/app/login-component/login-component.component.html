@@ -1,1 +1,32 @@
-<p>login-component works!</p>
+<div class="container-fluid d-flex justify-content-center ">
+    <mat-card [formGroup]="formG" class="login-box">
+        <mat-card-title>
+            Ingreso sistema SILOKO CREDIT
+        </mat-card-title>
+        <mat-card-content>
+            <mat-form-field color="accent">
+                <input type="email" formControlName="email" matInput placeholder="Correo electronico">
+            </mat-form-field>
+            <br />
+            <mat-form-field color="accent">
+                <input type="password" formControlName="code" matInput placeholder="Codigo / Cedula" />
+            </mat-form-field>
+            <div >
+            <label id="example-radio-group-label">Seleccione el tipo usuario:</label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"  formControlName="rol" required>
+                <mat-radio-button value="rol1" class="example-radio-button">Funcionario SILOKO</mat-radio-button>
+                <mat-radio-button  value="rol2" class="example-radio-button">Funcionario Almacen Convenio</mat-radio-button>
+                <mat-radio-button  value="rol3" class="example-radio-button">Cliente SILOKO</mat-radio-button>
+            </mat-radio-group>
+            </div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <div class="d-flex justify-content-center">
+                <button mat-raised-button class="color-binance">Ingresar</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
