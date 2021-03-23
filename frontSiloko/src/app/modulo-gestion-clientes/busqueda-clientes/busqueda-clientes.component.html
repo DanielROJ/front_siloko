@@ -1,1 +1,60 @@
-<p>busqueda-clientes works!</p>
+<section class="container">
+
+    <mat-card>
+        <mat-card-title style="text-align: center;">
+            Busqueda cliente
+        </mat-card-title>
+
+        <mat-card-content [formGroup]="formG" class="container">
+            <div>          
+                <mat-form-field floatLabel="always" appearance="outline" style="width: 50%;">
+                <mat-label style="font-size: x-large">Identificación cliente</mat-label>
+                <input formControlName="idCliente" type="text" matInput placeholder="número identificación">   
+                </mat-form-field>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" style="font-size: 50px; vertical-align: top">search</mat-icon>
+
+            <div class="form-group">
+                <button (click)="onSubmit()" mat-raised-button class="color-binance" [disabled]="formG.invalid">Buscar</button>
+            </div>
+
+
+            <div *ngIf="buscando" class="form-group">
+                <mat-progress-spinner style="margin-inline: auto;" color="accent" [mode]="mode"></mat-progress-spinner>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ng-container  class="form-group">
+                <p class="alert alert-warning" role="alert">Este modulo sirve para la busqueda de clientes en <b>SILOKO MOBILE</b>, así mismo, para la gestión de los mismos o 
+                generar una solicitud de crédito en <b>SILOKO CREDIT</b>.</p>
+            </ng-container>
+
+        </div>
+  
+        </mat-card-content>
+
+
+    </mat-card>
+
+
+
+
+
+
+
+
+
+
+</section>

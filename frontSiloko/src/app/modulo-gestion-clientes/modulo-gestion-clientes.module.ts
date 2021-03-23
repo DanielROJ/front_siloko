@@ -6,13 +6,16 @@ import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.componen
 import { GestionCupoClienteComponent } from './gestion-cupo-cliente/gestion-cupo-cliente.component';
 import { ListaSolicitudesCreditoComponent } from './lista-solicitudes-credito/lista-solicitudes-credito.component';
 import { BusquedaClientesComponent } from './busqueda-clientes/busqueda-clientes.component';
+import { MenuTabsGestionComponent } from './menu-tabs-gestion/menu-tabs-gestion.component';
+import { ShareModule } from '../share/share.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
-  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent],
+  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent, MenuTabsGestionComponent],
   imports: [
-    CommonModule,
-    ModuloGestionClientesRoutingModule
+    ModuloGestionClientesRoutingModule,
+    ShareModule
   ]
 })
 export class ModuloGestionClientesModule { }
