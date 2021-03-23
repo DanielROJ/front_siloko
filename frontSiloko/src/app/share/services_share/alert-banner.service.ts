@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import Swal from 'sweetalert2';
-
+import Swal from 'sweetalert2/src/sweetalert2.js'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +9,15 @@ import Swal from 'sweetalert2';
  */
 export class AlertBannerService {
 
-  constructor() { }
+  private mensajeBaseSinOK = null;
+
+
+
+
+  constructor() {
+    
+
+  }
 
 
 
@@ -30,22 +37,32 @@ public messageError(text:string):void{
 public messageLogin(error:boolean):Promise<Object>{
 
   if(error === false){
+
+   
+    
    return Swal.fire({
       position: 'top-end',
+      toast:true,
       icon: 'success',
       title: 'Ingreso de sesión con exito',
-      buttonsStyling:false,
+      showConfirmButton: false,
+      confirmButtonColor:'#F8D12F',
       timer: 1500
     })
+    
   }else{
 
     return Swal.fire({
       position: 'top-end',
+      toast:true,
       icon: 'error',
-      title: 'Ingreso de sesión fallido',
-      text:"Revisar campos Correo electronico / codigo",
-      buttonsStyling:false,
-      timer: 2000
+      title: 'Fallo ingreso de sesión',
+      text:"Verifique los campos Correo electronico / codigo",
+      background:"#212121",
+      confirmButtonText:"Hecho",
+      confirmButtonColor:'#F8D12F',
+      timerProgressBar: true,
+      timer: 5000
     })
 
   }

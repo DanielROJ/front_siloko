@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
+import { AlertBannerService } from './services_share/alert-banner.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {MatRadioModule} from '@angular/material/radio';
     PerfilComponentComponent, 
     VistaGeneralComponent,
     MatInputModule,
-    MatRadioModule]
+    MatRadioModule],
+    providers:[AlertBannerService]
 })
 export class ShareModule { }
