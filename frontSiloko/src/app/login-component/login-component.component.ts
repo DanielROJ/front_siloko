@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AlertBannerService } from '../services/alert-banner.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponentComponent implements OnInit {
   public formG : FormGroup;
 
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder, private alert:AlertBannerService) {
     this.formG = this.generateForm();
    }
 
@@ -33,32 +34,14 @@ export class LoginComponentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this imaginary file!',
-      icon: 'warning',
-      background:"#212121",
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire(
-          'Deleted!',
-          'Your imaginary file has been deleted.',
-          'success'
-        )
-      // For more information about handling dismissals please visit
-      // https://sweetalert2.github.io/#handling-dismissals
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
-      }
-    })
 
+}
+
+
+public onSubmit():void{
+ this.alert.messageLogin(false).then(()=>{
+   console.log("todo esta ok")
+ });
 }
 
 

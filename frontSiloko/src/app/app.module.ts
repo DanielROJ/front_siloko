@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { ShareModule } from './share/share.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AlertBannerService } from './services/alert-banner.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     BrowserAnimationsModule,
     ShareModule
   ],
-  providers: [],
+  providers: [AlertBannerService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
