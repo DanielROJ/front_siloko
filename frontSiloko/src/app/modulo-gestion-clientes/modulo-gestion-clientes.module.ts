@@ -9,10 +9,11 @@ import { BusquedaClientesComponent } from './busqueda-clientes/busqueda-clientes
 import { MenuTabsGestionComponent } from './menu-tabs-gestion/menu-tabs-gestion.component';
 import { ShareModule } from '../share/share.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { GenerarSolicitudComponent } from './generar-solicitud/generar-solicitud.component';
 
 
 @NgModule({
-  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent, MenuTabsGestionComponent],
+  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent, MenuTabsGestionComponent, GenerarSolicitudComponent],
   imports: [
     ModuloGestionClientesRoutingModule,
     ShareModule

@@ -9,23 +9,34 @@ import Swal from 'sweetalert2/src/sweetalert2.js'
  */
 export class AlertBannerService {
 
-  private mensajeBaseSinOK = null;
 
-
-
-
-  constructor() {
-    
-
+  public messageErrorSystem():Promise<Object>{
+    return Swal.fire({
+      position: 'top-end',
+      toast:true,
+      icon: 'error',
+      title: 'El servidor no se encuentra disponible',
+      text:"Por favor envio un correo al area de soporte : german.rojas@segurosbolivar.com",
+      background:"#212121",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 6000
+    })
   }
 
 
 
-public messageError(text:string):void{
-  Swal.fire(
-
-  )
-
+public messageErrorNofound(text:string):Promise<Object>{
+  return Swal.fire({
+    position: 'top-end',
+    toast:true,
+    icon: 'error',
+    title: 'No se encontro el elemento: '+text,
+    background:"#212121",
+    showConfirmButton: false,
+    timerProgressBar: true,
+    timer: 1250
+  })
 }
 
 

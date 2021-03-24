@@ -6,45 +6,115 @@
         </mat-card-title>
 
         <mat-card-content [formGroup]="formG" class="container">
-            <div>          
-                <mat-form-field floatLabel="always" appearance="outline" style="width: 50%;">
-                <mat-label style="font-size: x-large">Identificación cliente</mat-label>
-                <input formControlName="idCliente" type="text" matInput placeholder="número identificación">
-                <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.required">{{messageError.getMessageRequired("Identificación cliente")}}</mat-error> 
-                <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.pattern">{{messageError.getMessageRequiredNumber("Identificación cliente")}}</mat-error> 
-                </mat-form-field>
-            <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" style="font-size: 50px; vertical-align: top">search</mat-icon>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
+                        <mat-label style="font-size: x-large">Identificación cliente</mat-label>
+                        <input formControlName="idCliente" type="text" matInput placeholder="número identificación">
+                        <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.required">
+                            {{messageError.getMessageRequired("Identificación cliente")}}</mat-error>
+                        <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.pattern">
+                            {{messageError.getMessageRequiredNumber("Identificación cliente")}}</mat-error>
+                    </mat-form-field>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent"
+                        style="font-size: 50px; vertical-align: top">search</mat-icon>
+                </div>
 
-            <div class="form-group">
-                <button (click)="onSubmit()" mat-raised-button class="color-binance" [disabled]="formG.invalid">Buscar</button>
+                <div class="col-5 form-group">
+                    <button (click)="onSubmit()" style="margin-inline: auto;" mat-raised-button class="color-binance align-middle"
+                        [disabled]="formG.invalid">Buscar</button>
+                </div>
+
             </div>
-
-
             <div *ngIf="buscando" class="form-group">
                 <mat-progress-spinner style="margin-inline: auto;" color="accent" [mode]="mode"></mat-progress-spinner>
             </div>
 
 
 
+            <mat-card *ngIf="datosCliente" class="card-interna container">
+                <mat-card-title style="text-align: center;">
+                    Información cliente
+                </mat-card-title>
+
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col col-12-sm">
+                            <div class="form-group">
+                                <label>
+                                    <h5>Nombres:</h5>
+                                </label>
+                                <p>{{cliente.names}}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <h5>Apellidos:</h5>
+                                </label>
+                                <p>{{cliente.surNames}}</p>
+                            </div>
+
+                            <ng-container *ngIf="cliente.credit===null">
+                                <label>
+                                    <h5>Estado del cupo credicticio:</h5>
+                                </label>
+                                <p class="alert alert-info" role="alert">El cliente no posee cupo crediticio, para generar un cupo dirijase
+                                    a la pantalla de gestión del cliente, donde, podra realizar una solicitud de estudio de crédito.
+                                </p>
+                            </ng-container>
 
 
 
 
+                            <ng-container *ngIf="cliente.credit!==null">
+                            <div class="form-group">
+                                <label>
+                                    <h5>Cupo total disponible:</h5>
+                                </label>
+                                <p>{{cliente.credit.totalSizeCredit|currency:moneda:"symbol"}}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <h5>Cupo total en transacción:</h5>
+                                </label>
+                                <p>{{cliente.credit.sizeTransactionCredit|currency:moneda:"symbol"}}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <h5>Estado del cupo credicticio:</h5>
+                                </label>
+                                <p>{{cliente.credit.statusCredit.description}}</p>
+                            </div>
+                        </ng-container>
+                        </div>
+
+                        <div class="col">
+                            <div class="b-gestion row d-flex justify-content-center">
+                            <input [disabled]="cliente.credit===null" (click)="toGenerarSolicitud()" mat-raised-button class="color-binance btn "
+                                value="Generar solicitud de credito" type="button"/>
+                            </div>
+                            <div class="b-gestion row d-flex justify-content-center">
+                            <input (click)="toGestionCliente()" mat-raised-button class="color-binance btn"
+                                value="Gestión de perfil y credito" type="button"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+
+
+            </mat-card>
+
+            <div class="form-group" style="padding-top: 20px;">
+                <p class="alert alert-warning" role="alert">Este modulo sirve para la busqueda de clientes en <b>SILOKO
+                        MOBILE</b>, así mismo, para la gestión de los mismos o
+                    generar una solicitud de crédito en <b>SILOKO CREDIT</b>.</p>
+            </div>
 
 
 
-
-
-
-
-
-            <ng-container  class="form-group">
-                <p class="alert alert-warning" role="alert">Este modulo sirve para la busqueda de clientes en <b>SILOKO MOBILE</b>, así mismo, para la gestión de los mismos o 
-                generar una solicitud de crédito en <b>SILOKO CREDIT</b>.</p>
-            </ng-container>
-
-        </div>
-  
         </mat-card-content>
 
 

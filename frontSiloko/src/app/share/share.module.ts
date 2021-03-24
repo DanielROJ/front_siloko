@@ -26,7 +26,7 @@ import { ClienteService } from '../services/cliente.service';
     CommonModule
   ],
   exports:[
-  
+    CurrencyPipe, 
     CommonModule,
     MatFormFieldModule,
     FormsModule,

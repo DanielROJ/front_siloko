@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/models/Cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 import { ValidatorsMessage } from 'src/app/validatorsMessage';
@@ -14,11 +16,15 @@ export class BusquedaClientesComponent implements OnInit {
 
 
   public buscando = false;
+  public datosCliente = false;
   mode: ProgressSpinnerMode = 'determinate';
   public formG :FormGroup;
   public messageError: ValidatorsMessage;
+  public cliente:Cliente;  
+  public moneda:string;
 
-  constructor(private formBuilder:FormBuilder, private clienteService :ClienteService, private alertService:AlertBannerService) { 
+  constructor(private formBuilder:FormBuilder, private clienteService :ClienteService, private alertService:AlertBannerService,
+    private router:Router) { 
 
     this.formG = this.generateForm();
     this.messageError = new ValidatorsMessage();
@@ -45,15 +51,33 @@ export class BusquedaClientesComponent implements OnInit {
 
 public onSubmit():void{
     if(this.formG.valid){
+      /*
       this.buscando = true; 
       this.mode = <ProgressSpinnerMode> 'indeterminate';
-
+      */
       let documento = Number(this.formG.get("idCliente").value);
+
       this.clienteService.getClienteByDocumentoId(documento).subscribe(data=>{
-        console.log(data)
+        this.cliente = <Cliente> data;
+        this.moneda = this.cliente.city.country.typeCoin;
+        this.buscando = false; 
+        this.mode = <ProgressSpinnerMode> 'determinate';
+        this.datosCliente = true;
+
       },err=>{
         this.buscando = false; 
         this.mode = <ProgressSpinnerMode> 'determinate';
+        this.datosCliente = false;
+        if(err.status === 404){
+          this.formG.reset()
+          this.formG = this.generateForm();
+          this.alertService.messageErrorNofound("Cliente");
+          return;
+        }else if(err.status === 500){
+          this.formG.reset()
+          this.formG = this.generateForm();
+          this.alertService.messageErrorSystem();
+        }
       })
 
 
@@ -61,6 +85,16 @@ public onSubmit():void{
     }
   }
 
+
+  toGestionCliente():void{
+    this.router.navigateByUrl("/siloko/menu");
+    return;
+  }
+
+  toGenerarSolicitud():void{
+    this.router.navigateByUrl("siloko/solicitud");
+    return;
+  }
 
 
   ngOnInit(): void {
