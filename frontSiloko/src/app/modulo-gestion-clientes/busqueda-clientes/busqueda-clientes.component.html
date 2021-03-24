@@ -9,7 +9,9 @@
             <div>          
                 <mat-form-field floatLabel="always" appearance="outline" style="width: 50%;">
                 <mat-label style="font-size: x-large">Identificación cliente</mat-label>
-                <input formControlName="idCliente" type="text" matInput placeholder="número identificación">   
+                <input formControlName="idCliente" type="text" matInput placeholder="número identificación">
+                <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.required">{{messageError.getMessageRequired("Identificación cliente")}}</mat-error> 
+                <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.pattern">{{messageError.getMessageRequiredNumber("Identificación cliente")}}</mat-error> 
                 </mat-form-field>
             <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" style="font-size: 50px; vertical-align: top">search</mat-icon>
 

@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import { AlertBannerService } from './services_share/alert-banner.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ClienteService } from '../services/cliente.service';
 
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent],
@@ -25,7 +26,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     CommonModule
   ],
   exports:[
-    
+  
     CommonModule,
     MatFormFieldModule,
     FormsModule,
@@ -45,6 +46,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule,
     MatRadioModule,
     MatProgressSpinnerModule],
-    providers:[AlertBannerService]
+    providers:[AlertBannerService,ClienteService]
 })
 export class ShareModule { }

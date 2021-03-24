@@ -5,7 +5,7 @@ import { UrlsApi } from 'src/urls-api';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class FuncionarioService {
 
   private headers:HttpHeaders;
 

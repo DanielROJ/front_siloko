@@ -14,4 +14,8 @@ export class ValidatorsMessage {
         return "El correo electronico es obligatorio";
     }
 
+    public   getMessageRequiredNumber(nombreCampo:string):string{
+        return "El campo "+nombreCampo+" debe ser numerico";
+    }
+
 }
