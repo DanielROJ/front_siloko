@@ -7,6 +7,9 @@ export class UrlsApi {
 
     public readonly getClienteById = String(this.host+"/cliente");
     public readonly getClienteByDocumento = String(this.host+"/cliente/documentoId");
+    public readonly setBloquearCupo = String(this.host+"/cliente/cupoCredito/bloquear")
+
+
 
 
 }

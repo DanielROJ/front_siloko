@@ -9,22 +9,22 @@
                     <div class="col ">
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
-                                <h4>Cupo total disponible</h4>
-                                <h6>{{cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed}}</h6>
+                                <h4 style="width: 350px;">Cupo total disponible</h4>
+                                <h6>{{(cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed)|currency:moneda:"symbol"}}</h6>
                             </div>
                         </div>
 
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
-                                <h4>Cupo total asignado</h4>
-                                <h6>{{cupoCredito.totalSizeCredit}}</h6>
+                                <h4 style="width: 350px;">Cupo total asignado</h4>
+                                <h6>{{cupoCredito.totalSizeCredit|currency:moneda:"symbol"}}</h6>
                             </div>
                         </div>
 
                         <div class="row item-credit d-flex justify-content-center">
-                            <div>
-                                <h4>Cupo total en uso</h4>
-                                <h6>{{cupoCredito.sizeCreditUsed}}</h6>
+                            <div >
+                                <h4 style="width: 350px;">Cupo total en uso</h4>
+                                <h6>{{cupoCredito.sizeCreditUsed|currency:moneda:"symbol"}}</h6>
                             </div>
                         </div>
                     </div>
@@ -33,14 +33,14 @@
                     <div class="col">
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
-                                <h4>Ultima actualización del cupo</h4>
+                                <h4 style="width: 350px;">Última actualización del cupo</h4>
                                 <h6>{{cupoCredito.dateLastStudyCredit}}</h6>
                             </div>
                         </div>
 
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
-                                <h4>Estado cupo crediticio</h4>
+                                <h4 style="width: 350px;">Estado cupo crediticio</h4>
                                 <h6>{{cupoCredito.statusCredit.description}}</h6>
                             </div>
                         </div>
@@ -53,15 +53,15 @@
                 <div class="row">
 
                     <div class="col button-item-credit">
-                        <input class="btn btn-danger" type="button" value="Bloquear cupo">
+                        <input class="btn btn-danger" type="button"  (click)="BloquearCupo()" value="Bloquear cupo">
                     </div>
 
                     <div class="col button-item-credit">
-                        <input class="btn" type="button" value="Generar cupo automaticamente">
+                        <input class="btn color-binance" type="button" value="Generar cupo automaticamente">
                     </div>
 
                     <div class="col button-item-credit">
-                        <input class="btn " type="button" value="Asignar cupo manualmente">
+                        <input class="btn color-binance" type="button" value="Asignar cupo manualmente">
                     </div>
 
                 </div>

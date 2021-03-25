@@ -24,6 +24,32 @@ export class AlertBannerService {
     })
   }
 
+  public messageErrorTransaction(text:string):Promise<Object>{
+    return Swal.fire({
+      position: 'top-end',
+      toast:true,
+      icon: 'error',
+      title: 'Error, no se pudo ejecutar la transacción',
+      text:text,
+      background:"#212121",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 6000
+    })
+  } 
+
+  public messageSuccesTransaction():Promise<Object>{
+    return Swal.fire({
+      position: 'top-end',
+      toast:true,
+      icon: 'success',
+      title: 'La transacción se ejecuto correctamente',
+      background:"#212121",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 3000
+    })
+  } 
 
 
 public messageErrorNofound(text:string):Promise<Object>{
