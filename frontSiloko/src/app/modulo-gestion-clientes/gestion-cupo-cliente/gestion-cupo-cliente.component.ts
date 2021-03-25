@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente';
 import { CupoCredito } from 'src/app/models/CupoCredito';
+import { Funcionario } from 'src/app/models/Funcionario';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 
@@ -12,6 +13,10 @@ import { AlertBannerService } from 'src/app/share/services_share/alert-banner.se
 export class GestionCupoClienteComponent implements OnInit {
 
   private cliente:Cliente;
+  private funcionario:Funcionario;
+
+
+
   public cupoCredito:CupoCredito;
   public moneda:string;
 
@@ -24,10 +29,39 @@ export class GestionCupoClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private UpdateCookieCliente(cliente:Cliente):void{
+    localStorage.removeItem("client");
+    localStorage.setItem("client",JSON.stringify(cliente));
+  }
 
 
   BloquearCupo():void{
-    this.clienteService.setBloquearCupoCredito(this.cliente.id).subscribe(data=>{
+    this.clienteService.setBloquearCupoCredito(this.cliente.id,2).subscribe(data=>{
+      this.cupoCredito = <CupoCredito> data;
+      this.cliente.credit = <CupoCredito> data;
+
+      this.UpdateCookieCliente(this.cliente);
+      
+      if(data){
+        this.alertBanner.messageSuccesTransaction();
+      }
+    },err=>{
+      if(err.status === 404 || err.status === 400){
+        this.alertBanner.messageErrorTransaction("")
+      }else if(err.status === 500){
+        this.alertBanner.messageErrorSystem();
+      }
+    })
+  }
+
+
+  DesbloquearCupo():void{
+    this.clienteService.setDesbloquearCupoCredito(this.cliente.id,2).subscribe(data=>{
+      this.cupoCredito = <CupoCredito> data;
+      this.cliente.credit = <CupoCredito> data;
+
+      this.UpdateCookieCliente(this.cliente);
+      
       if(data){
         this.alertBanner.messageSuccesTransaction();
       }

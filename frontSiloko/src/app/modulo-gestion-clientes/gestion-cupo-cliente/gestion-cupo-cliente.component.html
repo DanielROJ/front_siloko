@@ -4,8 +4,19 @@
         <mat-card class="card-interna">
             <mat-card-title style="text-align: center;">Cupo de crédito</mat-card-title>
 
-            <mat-card-content>
-                <div class="row ">
+            <mat-card-content >
+
+                <div *ngIf="cupoCredito === null">
+                    <div class="alert alert-info" style="text-align: center;" role="alert">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" 
+                        style="font-size: 50px;">announcement</mat-icon>
+                        <h4 >El cliente no tiene un cupo de crédito asignado.</h4>
+                    </div>
+                </div>
+
+
+
+                <div *ngIf="cupoCredito !== null" class="row ">
                     <div class="col ">
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
@@ -51,11 +62,16 @@
 
             <mat-card-actions class="d-flex justify-content-center">
                 <div class="row">
-
-                    <div class="col button-item-credit">
+                    <ng-container *ngIf="cupoCredito !== null">
+                    <div *ngIf="cupoCredito.statusCredit.status == 'Activo'" class="col button-item-credit">
                         <input class="btn btn-danger" type="button"  (click)="BloquearCupo()" value="Bloquear cupo">
                     </div>
 
+                    <div  *ngIf="cupoCredito.statusCredit.status == 'Bloqueado'"  class="col button-item-credit">
+                        <input class="btn btn-success" type="button"  (click)="DesbloquearCupo()" value="Desbloquear cupo">
+                    </div>
+
+                  </ng-container>
                     <div class="col button-item-credit">
                         <input class="btn color-binance" type="button" value="Generar cupo automaticamente">
                     </div>
