@@ -1,1 +1,75 @@
-<p>gestion-cupo-cliente works!</p>
+<section>
+    <mat-card class="card-interna">
+
+        <mat-card class="card-interna">
+            <mat-card-title style="text-align: center;">Cupo de crédito</mat-card-title>
+
+            <mat-card-content>
+                <div class="row ">
+                    <div class="col ">
+                        <div class="row item-credit d-flex justify-content-center">
+                            <div>
+                                <h4>Cupo total disponible</h4>
+                                <h6>{{cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="row item-credit d-flex justify-content-center">
+                            <div>
+                                <h4>Cupo total asignado</h4>
+                                <h6>{{cupoCredito.totalSizeCredit}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="row item-credit d-flex justify-content-center">
+                            <div>
+                                <h4>Cupo total en uso</h4>
+                                <h6>{{cupoCredito.sizeCreditUsed}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="row item-credit d-flex justify-content-center">
+                            <div>
+                                <h4>Ultima actualización del cupo</h4>
+                                <h6>{{cupoCredito.dateLastStudyCredit}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="row item-credit d-flex justify-content-center">
+                            <div>
+                                <h4>Estado cupo crediticio</h4>
+                                <h6>{{cupoCredito.statusCredit.description}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions class="d-flex justify-content-center">
+                <div class="row">
+
+                    <div class="col button-item-credit">
+                        <input class="btn btn-danger" type="button" value="Bloquear cupo">
+                    </div>
+
+                    <div class="col button-item-credit">
+                        <input class="btn" type="button" value="Generar cupo automaticamente">
+                    </div>
+
+                    <div class="col button-item-credit">
+                        <input class="btn " type="button" value="Asignar cupo manualmente">
+                    </div>
+
+                </div>
+            </mat-card-actions>
+
+
+        </mat-card>
+
+
+    </mat-card>
+</section>

@@ -1,0 +1,17 @@
+.card-interna{
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+}
+
+.item-credit{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+input{
+    width: 250px;
+}
+
+.button-item-credit{
+    padding-top: 25px;
+}

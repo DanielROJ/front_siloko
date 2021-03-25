@@ -19,7 +19,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { AlertBannerService } from './services_share/alert-banner.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ClienteService } from '../services/cliente.service';
-
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent],
   imports: [
@@ -45,7 +45,8 @@ import { ClienteService } from '../services/cliente.service';
     VistaGeneralComponent,
     MatInputModule,
     MatRadioModule,
-    MatProgressSpinnerModule],
+    MatProgressSpinnerModule,
+    MatTabsModule],
     providers:[AlertBannerService,ClienteService]
 })
 export class ShareModule { }

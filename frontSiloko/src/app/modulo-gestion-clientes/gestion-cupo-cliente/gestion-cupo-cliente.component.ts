@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/models/Cliente';
+import { CupoCredito } from 'src/app/models/CupoCredito';
 
 @Component({
   selector: 'app-gestion-cupo-cliente',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionCupoClienteComponent implements OnInit {
 
-  constructor() { }
+  public cupoCredito:CupoCredito;
+
+
+  constructor() { 
+    let cliente  = <Cliente>JSON.parse(localStorage.getItem("client"));
+    this.cupoCredito = cliente.credit;
+  }
 
   ngOnInit(): void {
   }

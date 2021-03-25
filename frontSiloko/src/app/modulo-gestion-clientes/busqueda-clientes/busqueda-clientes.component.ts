@@ -28,6 +28,7 @@ export class BusquedaClientesComponent implements OnInit {
 
     this.formG = this.generateForm();
     this.messageError = new ValidatorsMessage();
+    localStorage.removeItem("client");
 
   }
 
@@ -56,10 +57,11 @@ public onSubmit():void{
       this.mode = <ProgressSpinnerMode> 'indeterminate';
       */
       let documento = Number(this.formG.get("idCliente").value);
-
+      localStorage.removeItem("client");
       this.clienteService.getClienteByDocumentoId(documento).subscribe(data=>{
         this.cliente = <Cliente> data;
         this.moneda = this.cliente.city.country.typeCoin;
+        localStorage.setItem("client",JSON.stringify(this.cliente));
         this.buscando = false; 
         this.mode = <ProgressSpinnerMode> 'determinate';
         this.datosCliente = true;
