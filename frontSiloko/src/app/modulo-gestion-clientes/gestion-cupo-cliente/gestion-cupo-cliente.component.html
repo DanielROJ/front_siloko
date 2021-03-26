@@ -14,6 +14,8 @@
                     </div>
                 </div>
 
+                
+
 
 
                 <div *ngIf="cupoCredito !== null" class="row ">
@@ -73,7 +75,7 @@
 
                   </ng-container>
                     <div class="col button-item-credit">
-                        <input class="btn color-binance" type="button" value="Generar cupo automaticamente">
+                        <input class="btn color-binance" type="button" (click)="GenerarCupoAutmatico()" value="Generar cupo automaticamente">
                     </div>
 
                     <div class="col button-item-credit">

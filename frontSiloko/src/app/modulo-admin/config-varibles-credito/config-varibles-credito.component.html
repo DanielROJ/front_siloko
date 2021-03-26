@@ -1,1 +1,37 @@
-<p>config-varibles-credito works!</p>
+<section>
+    <mat-card class="card-interna">
+        <mat-card-title style="text-align: center;">Gestión de parametro de crédito</mat-card-title>
+        <mat-card-content [formGroup]="formG">
+
+            <div class="col-12">
+                <div class="row d-flex justify-content-center">
+                    <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
+                        <mat-label style="font-size: x-large">Nombre país</mat-label>
+                
+                            <input type="text"
+                                   placeholder="nombre"
+                                   matInput
+                                   formControlName="idPais"
+                                   [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                              </mat-option>
+                            </mat-autocomplete>
+
+                        <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
+                            {{messageError.getMessageRequired("nombre pais")}}</mat-error>
+                    </mat-form-field>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" style="font-size: 50px; vertical-align: top">search</mat-icon>
+                </div>
+
+                <div class="row form-group">
+                    <button (click)="onSubmit()" style="margin-inline: auto;" mat-raised-button class="color-binance align-middle"
+                        [disabled]="formG.invalid">Buscar</button>
+                </div>
+                </div>
+
+        </mat-card-content>
+
+        </mat-card>
+</section>

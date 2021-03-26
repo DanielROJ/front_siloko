@@ -34,4 +34,8 @@ export class ClienteService {
     return this.http.post<CupoCredito>(this.urlProvider.setDesbloquearCupo+"?cliente="+idCliente+"&funcionario="+idFuncionario,{},{headers:this.headers});
   }
 
+  public setGenerarCupoCredito(idCliente:Number, idFuncionario:Number): Observable<CupoCredito>{
+    return this.http.post<CupoCredito>(this.urlProvider.setGenerarCupo+"?cliente="+idCliente+"&funcionario="+idFuncionario,{},{headers:this.headers});
+  }
+
 }

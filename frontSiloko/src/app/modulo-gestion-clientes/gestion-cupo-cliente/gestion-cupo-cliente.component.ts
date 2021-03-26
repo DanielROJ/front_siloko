@@ -76,7 +76,22 @@ export class GestionCupoClienteComponent implements OnInit {
 
 
   GenerarCupoAutmatico():void{
+    this.clienteService.setGenerarCupoCredito(this.cliente.id,2).subscribe(data=>{
+      this.cupoCredito = <CupoCredito> data;
+      this.cliente.credit = <CupoCredito> data;
 
+      this.UpdateCookieCliente(this.cliente);
+      
+      if(data){
+        this.alertBanner.messageSuccesTransaction();
+      }
+    },err=>{
+      if(err.status === 404 || err.status === 400){
+        this.alertBanner.messageErrorTransaction("")
+      }else if(err.status === 500){
+        this.alertBanner.messageErrorSystem();
+      }
+    })
   }
 
 

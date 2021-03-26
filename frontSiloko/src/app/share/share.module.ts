@@ -21,6 +21,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ClienteService } from '../services/cliente.service';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CupoCreditoService } from '../services/cupo-credito.service';
+import { ParametrosCupoCreditoService } from '../services/parametros-cupo-credito.service';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent],
   imports: [
@@ -47,7 +49,8 @@ import { CupoCreditoService } from '../services/cupo-credito.service';
     MatInputModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    MatTabsModule],
-    providers:[AlertBannerService,ClienteService,CupoCreditoService]
+    MatTabsModule,
+    MatAutocompleteModule],
+    providers:[AlertBannerService,ClienteService,CupoCreditoService,ParametrosCupoCreditoService]
 })
 export class ShareModule { }
