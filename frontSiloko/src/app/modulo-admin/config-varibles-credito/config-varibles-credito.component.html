@@ -1,37 +1,215 @@
 <section>
     <mat-card class="card-interna">
-        <mat-card-title style="text-align: center;">Gestión de parametro de crédito</mat-card-title>
+        <mat-card-title style="text-align: center;">Gestión de parametros del crédito</mat-card-title>
         <mat-card-content [formGroup]="formG">
 
             <div class="col-12">
                 <div class="row d-flex justify-content-center">
                     <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
                         <mat-label style="font-size: x-large">Nombre país</mat-label>
-                
-                            <input type="text"
-                                   placeholder="nombre"
-                                   matInput
-                                   formControlName="idPais"
-                                   [matAutocomplete]="auto">
-                            <mat-autocomplete #auto="matAutocomplete">
-                              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+
+                        <input type="text" placeholder="nombre" matInput formControlName="idPais"
+                            [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                 {{option}}
-                              </mat-option>
-                            </mat-autocomplete>
+                            </mat-option>
+                        </mat-autocomplete>
 
                         <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
                             {{messageError.getMessageRequired("nombre pais")}}</mat-error>
                     </mat-form-field>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" style="font-size: 50px; vertical-align: top">search</mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent"
+                        style="font-size: 50px; vertical-align: top">search</mat-icon>
                 </div>
 
                 <div class="row form-group">
-                    <button (click)="onSubmit()" style="margin-inline: auto;" mat-raised-button class="color-binance align-middle"
-                        [disabled]="formG.invalid">Buscar</button>
+                    <button (click)="onSubmit()" style="margin-inline: auto;" mat-raised-button
+                        class="color-binance align-middle" [disabled]="formG.invalid">Buscar</button>
                 </div>
+            </div>
+
+            <div class="container card-interna">
+                <div class="col">
+
+                    <div class="row item-control">
+
+                        <div class="col" >
+                            <div class="align-middle">
+                            <h6 class="item-title">Ciudad</h6>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
+                                <mat-label style="font-size: x-large">Nombre ciudad</mat-label>
+
+                                <input type="text" placeholder="nombre" matInput formControlName="idPais"
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+
+                                <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
+                                    {{messageError.getMessageRequired("nombre pais")}}</mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field>
+                                <input matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input class="item-title btn" type="button" value="guardar">
+                        </div>
+
+                    </div>
+
+                    <div class="row item-control">
+                        <div class="col">
+                            <div ><h6 class="item-title">Estrato economico</h6></div>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar estrato</mat-label>
+                                <mat-select required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option>hola</mat-option>
+                                    <mat-option>hola</mat-option>
+                                </mat-select>
+
+                                <mat-hint>"gogogogo"</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div class="col">
+                            <mat-form-field>
+                                <input matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input class="item-title btn" type="button" value="guardar">
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row item-control">
+                        <div class="col">
+                            <div ><h6 class="item-title">Rango antiguedad</h6></div>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar rango</mat-label>
+                                <mat-select required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option>hola</mat-option>
+                                    <mat-option>hola</mat-option>
+                                </mat-select>
+
+                                <mat-hint>"gogogogo"</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        
+                        <div class="col">
+                            <mat-form-field>
+                                <input matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input class="item-title btn" type="button" value="guardar">
+                        </div>
+
+                    </div>
+
+
+                    <div class="row item-control">
+                        <div class="col">
+                            <div ><h6 class="item-title">Plan telefonia</h6></div>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar plan</mat-label>
+                                <mat-select required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option>hola</mat-option>
+                                    <mat-option>hola</mat-option>
+                                </mat-select>
+
+                                <mat-hint>"gogogogo"</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="col">
+                            <mat-form-field>
+                                <input matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input class="item-title btn" type="button" value="guardar">
+                        </div>
+
+
+                    </div>
+
+                    <div class="row item-control">
+
+                        <div class="col">
+                            <div ><h6 class="item-title">Cantidad productos activos</h6></div>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar cantidad</mat-label>
+                                <mat-select required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option>hola</mat-option>
+                                    <mat-option>hola</mat-option>
+                                </mat-select>
+
+                                <mat-hint>"gogogogo"</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        
+                       
+                        <div class="col">
+                            <mat-form-field>
+                                <input matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                          
+                        <div class="col">
+                            <input class="item-title btn" type="button" value="guardar">
+                        </div>
+
+
+                    </div>
+
+
+                    
+
+
                 </div>
+            </div>
 
         </mat-card-content>
 
-        </mat-card>
+    </mat-card>
 </section>

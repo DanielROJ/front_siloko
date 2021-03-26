@@ -23,6 +23,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { CupoCreditoService } from '../services/cupo-credito.service';
 import { ParametrosCupoCreditoService } from '../services/parametros-cupo-credito.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent],
   imports: [
