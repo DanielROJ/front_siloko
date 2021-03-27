@@ -36,8 +36,8 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
   public configPais = true;
   public puntajePais =0;
-
-
+  public nombrePais = ""
+  public valorPunto =0;
 
   constructor(private formBuilder: FormBuilder, private alertService: AlertBannerService, private parametrosService: ParametrosCupoCreditoService) {
     this.formG = this.generateForm();
@@ -259,6 +259,7 @@ export class ConfigVariblesCreditoComponent implements OnInit {
       case 'idPais': 
         let pais = <Pais>this.mapaPaises[parametro.toLocaleLowerCase()];
         pais.amountPoints = this.puntajePais;
+
         this.parametrosService.updatePuntajePais(pais).subscribe(data => {
         this.mapaPaises[data.name.toLocaleLowerCase()] = data;
         this.puntajePais = data.amountPoints;
@@ -352,7 +353,10 @@ export class ConfigVariblesCreditoComponent implements OnInit {
         let idPais = paisTmp.id;
         this.configPais= false;
         this.puntajePais = paisTmp.amountPoints
-        
+        this.moneda = paisTmp.typeCoin;
+        this.nombrePais = paisTmp.name
+        this.valorPunto = paisTmp.valuePoint;
+
         this.parametrosService.getListCiudadesByPais(idPais).subscribe((data) => {
           this.formG.get("idCiudad").setValue('')
           this.listCiudades = <Ciudad[]>data;
@@ -386,12 +390,14 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   public updateValorPunto(name, value):void{
     let parametro = this.getFc(name).value
     if(this.configPais) return;
+    this.valorPunto =value
     this.mapaPaises[parametro.toLocaleLowerCase()].valuePoint = value;
   }
 
   public saveValorPunto(name):void{
     let parametro = this.getFc(name).value
     let pais = <Pais>this.mapaPaises[parametro.toLocaleLowerCase()];
+
     this.parametrosService.updateValorPuntoPais(pais).subscribe(data => {
     this.getFc(name).setValue(data.name);
     this.alertService.messageSuccesTransaction();

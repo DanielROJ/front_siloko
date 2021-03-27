@@ -79,7 +79,11 @@
 
                     </div>
 
-
+                    <div *ngIf="!configPais" class="row item-control">
+                        <div class="col">
+                            <h6 class="item-title">100 puntos en {{nombrePais}} son : {{valorPunto*100 |currency:moneda:"symbol"}} </h6>
+                        </div>
+                    </div>
 
 
                 </div>
