@@ -3,101 +3,191 @@
         <mat-card-title style="text-align: center;">Gestión de parametros del crédito</mat-card-title>
         <mat-card-content [formGroup]="formG">
 
-            <div class="col-12">
-                <div class="row d-flex justify-content-center">
-                    <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
-                        <mat-label style="font-size: x-large">Nombre país</mat-label>
+            <div class="container">
+                <div class="col">
 
-                        <input type="text" placeholder="nombre" matInput formControlName="idPais"
-                            [matAutocomplete]="auto">
-                        <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
+                    <div class="row d-flex justify-content-center">
 
-                        <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
-                            {{messageError.getMessageRequired("nombre pais")}}</mat-error>
-                    </mat-form-field>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent"
-                        style="font-size: 50px; vertical-align: top">search</mat-icon>
+
+                        <mat-form-field floatLabel="always" appearance="outline" style="width: 80%;">
+
+                            <mat-label style="font-size: x-large">Nombre país</mat-label>
+
+                            <input type="text" placeholder="nombre" matInput formControlName="idPais"
+                                [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+
+                            <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
+                                {{messageError.getMessageRequired("nombre pais")}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent"
+                            style="font-size: 50px; vertical-align: top">search</mat-icon>
+
+                        <div class="col form-group" style="margin-inline-start: 50px;
+                        margin-block-start: 10px;">
+                            <button (click)="onSubmit()" mat-raised-button class="color-binance align-middle"
+                                [disabled]="getFc('idPais').errors">Buscar</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="row form-group">
-                    <button (click)="onSubmit()" style="margin-inline: auto;" mat-raised-button
-                        class="color-binance align-middle" [disabled]="formG.invalid">Buscar</button>
-                </div>
             </div>
+
 
             <div class="container card-interna">
                 <div class="col">
+                    <div class="row item-control">
+                        <div class="col">
+                            <h6 class="item-title">Valor unidad por punto : </h6>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field>
+                                <input  matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input  class="item-title btn" type="button"
+                                value="guardar">
+                        </div>
+
+                    </div>
+
+
+                    <div class="row item-control">
+                        <div class="col">
+                            <h6 class="item-title">Puntaje país : </h6>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field>
+                                <input  matInput type="number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col">
+                            <input  class="item-title btn" type="button"
+                                value="guardar">
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="container card-interna">
+                <div class="col">
+                    <div class="row item-control">
+
+                        <div class="col">
+                            <h4>Parametro</h4>
+                        </div>
+
+
+                        <div class="col">
+                            <h4>Registro</h4>
+                        </div>
+
+
+                        <div class="col">
+                            <h4>Puntaje</h4>
+                        </div>
+
+
+
+                        <div class="col">
+                            <h4>Acción</h4>
+                        </div>
+                    </div>
 
                     <div class="row item-control">
 
-                        <div class="col" >
+                        <div class="col">
                             <div class="align-middle">
-                            <h6 class="item-title">Ciudad</h6>
+                                <h6 class="item-title">Ciudad</h6>
                             </div>
                         </div>
 
                         <div class="col">
-                            <mat-form-field floatLabel="always" appearance="outline" style="width: 90%;">
-                                <mat-label style="font-size: x-large">Nombre ciudad</mat-label>
-
-                                <input type="text" placeholder="nombre" matInput formControlName="idPais"
-                                    [matAutocomplete]="auto">
-                                <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                        {{option}}
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar ciudad</mat-label>
+                                <mat-select formControlName="idCiudad" required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let ciudad of listCiudades" [value]="ciudad">{{ciudad.name}}
                                     </mat-option>
-                                </mat-autocomplete>
-
-                                <mat-error *ngIf="hasErros('idPais') && getFc('idPais').errors.required">
-                                    {{messageError.getMessageRequired("nombre pais")}}</mat-error>
+                                </mat-select>
+                                <mat-error *ngIf="hasErros('idCiudad') && getFc('idCiudad').errors.required">
+                                    {{messageError.getMessageRequired(" Ciudad ")}}</mat-error>
                             </mat-form-field>
 
                         </div>
 
                         <div class="col">
                             <mat-form-field>
-                                <input matInput type="number">
+                                <input (change)="changePuntaje('idCiudad',$event.target.value)" [disabled]="getFc('idCiudad').errors" [value]="getPuntaje('idCiudad')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input class="item-title btn" type="button" value="guardar">
+                            <input [disabled]="getFc('idCiudad').errors" class="item-title btn" type="button"
+                               (click)="setUpdate('idCiudad')" value="guardar">
                         </div>
 
                     </div>
 
                     <div class="row item-control">
                         <div class="col">
-                            <div ><h6 class="item-title">Estrato economico</h6></div>
+                            <div>
+                                <h6 class="item-title">Estrato economico</h6>
+                            </div>
                         </div>
 
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar estrato</mat-label>
-                                <mat-select required>
+                                <mat-select formControlName="idEstrato" required>
                                     <mat-option>--</mat-option>
-                                    <mat-option>hola</mat-option>
-                                    <mat-option>hola</mat-option>
+                                    <mat-option *ngFor="let estrato of listEstratoEco" [value]="estrato">
+                                        {{estrato.numClassEconomic}}</mat-option>
                                 </mat-select>
 
-                                <mat-hint>"gogogogo"</mat-hint>
+                                <mat-error *ngIf="hasErros('idEstrato') && getFc('idEstrato').errors.required">
+                                    {{messageError.getMessageRequired(" Estrato ")}}</mat-error>
+
                             </mat-form-field>
                         </div>
-
+ 
 
 
                         <div class="col">
                             <mat-form-field>
-                                <input matInput type="number">
+                                <input (change)="changePuntaje('idEstrato',$event.target.value)" [disabled]="getFc('idEstrato').errors" [value]="getPuntaje('idEstrato')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input class="item-title btn" type="button" value="guardar">
+                            <input [disabled]="getFc('idEstrato').errors" class="item-title btn" type="button"
+                               (click)="setUpdate('idEstrato')" value="guardar">
                         </div>
 
 
@@ -106,62 +196,73 @@
 
                     <div class="row item-control">
                         <div class="col">
-                            <div ><h6 class="item-title">Rango antiguedad</h6></div>
+                            <div>
+                                <h6 class="item-title">Rango antiguedad</h6>
+                            </div>
                         </div>
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar rango</mat-label>
-                                <mat-select required>
+                                <mat-select formControlName="idRangoAnt" required>
                                     <mat-option>--</mat-option>
-                                    <mat-option>hola</mat-option>
-                                    <mat-option>hola</mat-option>
+                                    <mat-option *ngFor="let rango of listRangoAntiguedad" [value]="rango">
+                                        {{rango.rangeOld}}</mat-option>
                                 </mat-select>
 
-                                <mat-hint>"gogogogo"</mat-hint>
+                                <mat-error *ngIf="hasErros('idRangoAnt') && getFc('idRangoAnt').errors.required">
+                                    {{messageError.getMessageRequired(" Rango antiguedad ")}}</mat-error>
                             </mat-form-field>
                         </div>
 
-                        
+
+                      
                         <div class="col">
                             <mat-form-field>
-                                <input matInput type="number">
+                                <input (change)="changePuntaje('idRangoAnt',$event.target.value)" [disabled]="getFc('idRangoAnt').errors" [value]="getPuntaje('idRangoAnt')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input class="item-title btn" type="button" value="guardar">
+                            <input [disabled]="getFc('idRangoAnt').errors" class="item-title btn" type="button"
+                               (click)="setUpdate('idRangoAnt')" value="guardar">
                         </div>
+
 
                     </div>
 
 
                     <div class="row item-control">
                         <div class="col">
-                            <div ><h6 class="item-title">Plan telefonia</h6></div>
+                            <div>
+                                <h6 class="item-title">Producto telefonia</h6>
+                            </div>
                         </div>
 
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar plan</mat-label>
-                                <mat-select required>
+                                <mat-select formControlName="idProducto" required>
                                     <mat-option>--</mat-option>
-                                    <mat-option>hola</mat-option>
-                                    <mat-option>hola</mat-option>
+                                    <mat-option *ngFor="let product of listProductosTelefonia" [value]="product">
+                                        {{product.nameProduct}}</mat-option>
                                 </mat-select>
-
-                                <mat-hint>"gogogogo"</mat-hint>
+                                <mat-error *ngIf="hasErros('idProducto') && getFc('idProducto').errors.required">
+                                    {{messageError.getMessageRequired(" Producto telefonia ")}}</mat-error>
                             </mat-form-field>
                         </div>
 
 
                         <div class="col">
                             <mat-form-field>
-                                <input matInput type="number">
+                                <input [disabled]="getFc('idProducto').errors" [value]="getPuntaje('idProducto')"
+                                    matInput type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input class="item-title btn" type="button" value="guardar">
+                            <input [disabled]="getFc('idProducto').errors" class="item-title btn" type="button"
+                                value="guardar">
                         </div>
 
 
@@ -170,40 +271,44 @@
                     <div class="row item-control">
 
                         <div class="col">
-                            <div ><h6 class="item-title">Cantidad productos activos</h6></div>
+                            <div>
+                                <h6 class="item-title">Cantidad productos activos</h6>
+                            </div>
                         </div>
 
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar cantidad</mat-label>
-                                <mat-select required>
+                                <mat-select formControlName="idRangoCant" required>
                                     <mat-option>--</mat-option>
-                                    <mat-option>hola</mat-option>
-                                    <mat-option>hola</mat-option>
+                                    <mat-option *ngFor="let rango of listRangosCantidad" [value]="rango">
+                                        {{rango.rangeAmountProducts}}</mat-option>
                                 </mat-select>
-
-                                <mat-hint>"gogogogo"</mat-hint>
+                                <mat-error *ngIf="hasErros('idRangoCant') && getFc('idRangoCant').errors.required">
+                                    {{messageError.getMessageRequired(" Rango cantidad de productos ")}}</mat-error>
                             </mat-form-field>
                         </div>
 
-                        
-                       
+
+
                         <div class="col">
                             <mat-form-field>
-                                <input matInput type="number">
+                                <input [disabled]="getFc('idRangoCant').errors" [value]="getPuntaje('idRangoCant')"
+                                    matInput type="number">
                             </mat-form-field>
                         </div>
 
-                          
+
                         <div class="col">
-                            <input class="item-title btn" type="button" value="guardar">
+                            <input [disabled]="getFc('idRangoCant').errors" class="item-title btn" type="button"
+                                value="guardar">
                         </div>
 
 
                     </div>
 
 
-                    
+
 
 
                 </div>

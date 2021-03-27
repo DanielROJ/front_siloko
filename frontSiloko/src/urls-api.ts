@@ -17,12 +17,36 @@ export class UrlsApi {
     //------------------------------END-POINT---CIUDADES ----------------------////////////
     public readonly getListCiudades = String(this.host+"/ciudad/list")
     public readonly getListCiudadesByPais = String(this.host+"/ciudad/pais")
+    public readonly setUpdatePuntajeCiudad = String(this.host+"/ciudad/puntaje")
 
 
 
 
 
-    //------------------------------END-POINT---CIUDADES ----------------------////////////
+    //------------------------------END-POINT---Piases ----------------------////////////
     public readonly getListPaises = String(this.host+"/pais/list")
+    public readonly setUpdatePuntajePais = String(this.host+"/pais/puntaje")
+
+
+    //------------------------------END-POINT---Producto de Telefonia ----------------------////////////
+    public readonly getListProductosTelefonia = String(this.host+"/planTelefonia/list")
+    public readonly setUpdatePuntajeProductoTel= String(this.host+"/planTelefonia/puntaje")
+
+    //------------------------------END-POINT---Rango de antigueddad----------------------////////////
+    public readonly getListRangoAntiguedad = String(this.host+"/rangoAntiguedad/list")
+    public readonly setUpdatePuntajeRangoAntiguedad = String(this.host+"/rangoAntiguedad/puntaje")
+
+
+    //------------------------------END-POINT---Rango cantidad de productos----------------------////////////
+    public readonly getListRangoCantidadProductos = String(this.host+"/rangoCantidad/list")
+    public readonly setUpdatePuntajeRangoCantidadProductos= String(this.host+"/rangoCantidad/puntaje")
+
+//------------------------------END-POINT---Estrato economico----------------------////////////
+public readonly getListEstratoEconomico= String(this.host+"/estrato/list")
+public readonly setUpdatePuntajeEstratoEconomico= String(this.host+"/estrato/puntaje")
+
+
+
+
 
 }

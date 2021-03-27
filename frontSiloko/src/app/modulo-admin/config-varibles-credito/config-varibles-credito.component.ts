@@ -3,7 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Ciudad } from 'src/app/models/Ciudad';
+import { EstratoEconomico } from 'src/app/models/EstratoEconomico';
 import { Pais } from 'src/app/models/Pais';
+import { ProductoTelefonia } from 'src/app/models/ProductoTelefonia';
+import { RangoAntiguedad } from 'src/app/models/RangoAntiguedad';
+import { RangoCantidadProductos } from 'src/app/models/RangoCantidadProductos';
 import { ParametrosCupoCreditoService } from 'src/app/services/parametros-cupo-credito.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 import { ValidatorsMessage } from 'src/app/validatorsMessage';
@@ -19,7 +23,11 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   public messageError: ValidatorsMessage;
   public moneda: String;
   public listCiudades: Ciudad[];
+  public listRangosCantidad: RangoCantidadProductos[];
+  public listRangoAntiguedad: RangoAntiguedad[];
+  public listProductosTelefonia: ProductoTelefonia[];
   public listPaises: Pais[];
+  public listEstratoEco: EstratoEconomico[];
   options: string[] = [];
   filteredOptions: Observable<string[]>;
 
@@ -31,6 +39,14 @@ export class ConfigVariblesCreditoComponent implements OnInit {
     this.formG = this.generateForm();
     this.messageError = new ValidatorsMessage();
     localStorage.removeItem("client");
+
+    this.listCiudades = [];
+    this.listPaises = [];
+    this.listProductosTelefonia = [];
+    this.listRangoAntiguedad = [];
+    this.listRangosCantidad = [];
+    this.listEstratoEco = [];
+
   }
 
   ngOnInit(): void {
@@ -42,14 +58,9 @@ export class ConfigVariblesCreditoComponent implements OnInit {
       );
   }
 
-  private generateForm(): FormGroup {
-    return this.formBuilder.group({
-      'idPais': new FormControl('', [Validators.required])
-    });
-  }
-
 
   private dataInitial(): void {
+
     this.parametrosService.getListPais().subscribe(data => {
       this.listPaises = <Pais[]>data;
       this.listPaises.forEach(pais => {
@@ -66,27 +77,206 @@ export class ConfigVariblesCreditoComponent implements OnInit {
         this.formG.reset()
         this.formG = this.generateForm();
         this.alertService.messageErrorSystem();
+        return;
       }
     })
+
+
+    this.parametrosService.getListEstratoEconomico().subscribe(data => {
+      this.listEstratoEco = <EstratoEconomico[]>data;
+    }, err => {
+      if (err.status === 404) {
+        this.alertService.messageErrorNofound(" Productos Telefonia ");
+        return;
+      } else if (err.status === 500) {
+        this.alertService.messageErrorSystem();
+      }
+    })
+
+
+    this.parametrosService.getListProductosTelefonia().subscribe(data => {
+      this.listProductosTelefonia = <ProductoTelefonia[]>data;
+    }, err => {
+      if (err.status === 404) {
+        this.alertService.messageErrorNofound(" Productos Telefonia ");
+        return;
+      } else if (err.status === 500) {
+        this.alertService.messageErrorSystem();
+      }
+    })
+
+
+    this.parametrosService.getListRangoAntiguedad().subscribe(data => {
+      this.listRangoAntiguedad = <RangoAntiguedad[]>data;
+    }, err => {
+      if (err.status === 404) {
+        this.alertService.messageErrorNofound(" Rangos de antiguedad ");
+        return;
+      } else if (err.status === 500) {
+        this.alertService.messageErrorSystem();
+      }
+    })
+
+
+    this.parametrosService.getListRangoCantidad().subscribe(data => {
+      this.listRangosCantidad = <RangoCantidadProductos[]>data;
+    }, err => {
+      if (err.status === 404) {
+        this.alertService.messageErrorNofound(" Rangos de cantidad de productos");
+        return;
+      } else if (err.status === 500) {
+        this.alertService.messageErrorSystem();
+      }
+    })
+
+  }
+
+  public getPuntaje(name: String): number {
+    let parametro = this.getFc(name).value
+    let puntos = 0;
+
+    if (!parametro) {
+      return 0;
+    } else {
+      puntos = parametro.amountPoints;
+    }
+    return puntos;
+  }
+
+  private generateForm(): FormGroup {
+    return this.formBuilder.group({
+      'idPais': new FormControl('', [Validators.required]),
+      'idCiudad': new FormControl('', [Validators.required]),
+      'idProducto': new FormControl('', [Validators.required]),
+      'idRangoAnt': new FormControl('', [Validators.required]),
+      'idRangoCant': new FormControl('', [Validators.required]),
+      'idEstrato': new FormControl('', [Validators.required])
+    });
+  }
+
+  public setUpdate(name) {
+    let parametro = this.getFc(name).value
+
+    if (!parametro) {
+      return;
+    }
+
+
+    switch (name) {
+      case 'idCiudad': this.parametrosService.updatePuntajeCiudad(parametro).subscribe(data => {
+        let index = this.listCiudades.indexOf(parametro);
+        this.listCiudades[index] = <Ciudad>data;
+        this.getFc(name).setValue(data);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      });
+        break;
+
+
+
+      case 'idProducto': ;
+        break;
+      case 'idRangoAnt':this.parametrosService.updatePuntajeRangoAntiguedad(parametro).subscribe(data => {
+        let index = this.listRangoAntiguedad.indexOf(parametro);
+        this.listRangoAntiguedad[index] = <RangoAntiguedad> data;
+        this.getFc(name).setValue(data);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      });
+
+        break;
+
+
+      case 'idRangoCant':
+        break;
+      case 'idEstrato': this.parametrosService.updatePuntajeEstratoEconomico(parametro).subscribe(data => {
+        let index = this.listEstratoEco.indexOf(parametro);
+        this.listEstratoEco[index] = <EstratoEconomico>data;
+        this.getFc(name).setValue(data);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      })
+
+        break;
+
+      case 'idPais': ;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+
+  public changePuntaje(name, value) {
+    let parametro = this.getFc(name).value
+    let index = 0;
+
+    switch (name) {
+      case 'idPais':
+        break;
+      case 'idCiudad':
+        index = this.listCiudades.indexOf(parametro);
+        this.listCiudades[index].amountPoints = Number(value);
+        break;
+      case 'idProducto':
+
+      case 'idRangoAnt':
+
+      case 'idRangoCant':
+
+      case 'idEstrato':
+        index = this.listEstratoEco.indexOf(parametro);
+        this.listEstratoEco[index].amountPoints = Number(value);
+        break;
+
+      default:
+        break;
+    }
+
+
   }
 
 
   public onSubmit(): void {
-    if (this.formG.valid) {
+    if (this.formG.get("idPais").valid) {
       /*
       this.buscando = true; 
       this.mode = <ProgressSpinnerMode> 'indeterminate';
       */
+
       let nombrePais = String(this.formG.get("idPais").value).toLocaleLowerCase();
 
       let paisTmp = <Pais>this.mapaPaises[nombrePais];
 
-      if (paisTmp === null) {
+      if (paisTmp === undefined) {
+        this.formG.get("idCiudad").setValue('');
+        this.listCiudades = [];
         this.alertService.messageErrorNofound(" Pais ");
       } else {
         let idPais = paisTmp.id;
         this.parametrosService.getListCiudadesByPais(idPais).subscribe((data) => {
+          this.formG.get("idCiudad").setValue('')
           this.listCiudades = <Ciudad[]>data;
+          this.alertService.messageSuccesTransaction();
         }, err => {
           if (err.status === 404) {
             this.formG.reset()

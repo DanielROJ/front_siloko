@@ -4,6 +4,6 @@ export interface Pais {
 	name:string;
 	valuePoint:number;
 	typeCoin:string;
-	pointAmount:number;
+	amountPoints:number;
 
 }
