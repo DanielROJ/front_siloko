@@ -45,16 +45,16 @@
                         <div class="col">
                             <h6 class="item-title">Valor unidad por punto : </h6>
                         </div>
-
                         <div class="col">
                             <mat-form-field>
-                                <input  matInput type="number">
+                                <input (change)="updateValorPunto('idPais',$event.target.value)"  [disabled]="configPais" [value]="getValorPunto('idPais')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input  class="item-title btn" type="button"
-                                value="guardar">
+                            <input [disabled]="configPais" class="item-title btn" type="button"
+                               (click)="saveValorPunto('idPais')" value="guardar">
                         </div>
 
                     </div>
@@ -74,7 +74,7 @@
 
                         <div class="col">
                             <input [disabled]="configPais" class="item-title btn" type="button"
-                               (click)="setUpdate('idPais')" value="guardar">
+                               (click)="setUpdatePuntaje('idPais')" value="guardar">
                         </div>
 
                     </div>
@@ -150,7 +150,7 @@
 
                         <div class="col">
                             <input [disabled]="getFc('idCiudad').errors" class="item-title btn" type="button"
-                               (click)="setUpdate('idCiudad')" value="guardar">
+                               (click)="setUpdatePuntaje('idCiudad')" value="guardar">
                         </div>
 
                     </div>
@@ -188,7 +188,7 @@
 
                         <div class="col">
                             <input [disabled]="getFc('idEstrato').errors" class="item-title btn" type="button"
-                               (click)="setUpdate('idEstrato')" value="guardar">
+                               (click)="setUpdatePuntaje('idEstrato')" value="guardar">
                         </div>
 
 
@@ -226,7 +226,7 @@
 
                         <div class="col">
                             <input [disabled]="getFc('idRangoAnt').errors" class="item-title btn" type="button"
-                               (click)="setUpdate('idRangoAnt')" value="guardar">
+                               (click)="setUpdatePuntaje('idRangoAnt')" value="guardar">
                         </div>
 
 
@@ -263,7 +263,7 @@
 
                         <div class="col">
                             <input [disabled]="getFc('idProducto').errors" class="item-title btn" type="button"
-                               (click)="setUpdate('idProducto')" value="guardar">
+                               (click)="setUpdatePuntaje('idProducto')" value="guardar">
                         </div>
 
 
@@ -304,7 +304,7 @@
 
                         <div class="col">
                             <input [disabled]="getFc('idRangoCant').errors" class="item-title btn" type="button"
-                               (click)="setUpdate('idRangoCant')" value="guardar">
+                               (click)="setUpdatePuntaje('idRangoCant')" value="guardar">
                         </div>
 
 

@@ -117,7 +117,7 @@ export class ParametrosCupoCreditoService {
 
   /**
  * Metodo que actualiza el puntaje de un rango de antiguedad
- * @param ciudad 
+ * @param rango 
  * @returns 
  */
  public updatePuntajeRangoAntiguedad(rango:RangoAntiguedad):Observable<RangoAntiguedad>{
@@ -127,7 +127,7 @@ export class ParametrosCupoCreditoService {
 
 /**
  * Metodo que actualiza el puntaje de un producto de telfonia
- * @param ciudad 
+ * @param producto 
  * @returns 
  */
  public updatePuntajeProductoTelefonia(producto:ProductoTelefonia):Observable<ProductoTelefonia>{
@@ -135,12 +135,22 @@ export class ParametrosCupoCreditoService {
 }
 
 /**
- * Metodo que actualiza el puntaje de un producto de telfonia
- * @param ciudad 
+ * Metodo que actualiza el puntaje de un resgistro de rango cantidad
+ * @param rango 
  * @returns 
  */
  public updatePuntajeRangoCantidad(rango:RangoCantidadProductos):Observable<RangoCantidadProductos>{
   return this.http.put<RangoCantidadProductos>(this.urlProvider.setUpdatePuntajeRangoCantidadProductos,rango,{headers:this.headers});
+}
+
+
+/**
+ * Metodo que actualiza el valor por punto de cada pais
+ * @param pais 
+ * @returns 
+ */
+ public updateValorPuntoPais(pais:Pais):Observable<Pais>{
+  return this.http.put<Pais>(this.urlProvider.setUpdateValorPunto,pais,{headers:this.headers});
 }
 
 

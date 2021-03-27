@@ -36,7 +36,7 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
   public configPais = true;
   public puntajePais =0;
-  public valorPunto =0;
+
 
 
   constructor(private formBuilder: FormBuilder, private alertService: AlertBannerService, private parametrosService: ParametrosCupoCreditoService) {
@@ -53,6 +53,20 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
   }
 
+  private generateForm(): FormGroup {
+    return this.formBuilder.group({
+      'idPais': new FormControl('', [Validators.required]),
+      'idCiudad': new FormControl('', [Validators.required]),
+      'idProducto': new FormControl('', [Validators.required]),
+      'idRangoAnt': new FormControl('', [Validators.required]),
+      'idRangoCant': new FormControl('', [Validators.required]),
+      'idEstrato': new FormControl('', [Validators.required])
+    });
+  }
+
+
+
+
   ngOnInit(): void {
     this.dataInitial();
     this.filteredOptions = this.formG.get("idPais").valueChanges
@@ -64,7 +78,6 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
 
   private dataInitial(): void {
-
     this.parametrosService.getListPais().subscribe(data => {
       this.listPaises = <Pais[]>data;
       this.listPaises.forEach(pais => {
@@ -135,14 +148,14 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
   }
 
+  /**
+   * Metodo que retorna el puntaje de credito segun el objeto que se escoja en el combo box
+   * @param name 
+   * @returns 
+   */
   public getPuntaje(name: String): number {
     let parametro = this.getFc(name).value
     let puntos = 0;
-
-   
-
-
-
     if (!parametro) {
       return 0;
     } else {
@@ -151,18 +164,11 @@ export class ConfigVariblesCreditoComponent implements OnInit {
     return puntos;
   }
 
-  private generateForm(): FormGroup {
-    return this.formBuilder.group({
-      'idPais': new FormControl('', [Validators.required]),
-      'idCiudad': new FormControl('', [Validators.required]),
-      'idProducto': new FormControl('', [Validators.required]),
-      'idRangoAnt': new FormControl('', [Validators.required]),
-      'idRangoCant': new FormControl('', [Validators.required]),
-      'idEstrato': new FormControl('', [Validators.required])
-    });
-  }
-
-  public setUpdate(name) {
+  /**
+   * Metodo encargado de hacer la operacion de actualizacion del puntaje 
+   * a nivel de base de datos
+   */
+  public setUpdatePuntaje(name) {
     let parametro = this.getFc(name).value
 
     if (!parametro) {
@@ -273,7 +279,12 @@ export class ConfigVariblesCreditoComponent implements OnInit {
     }
   }
 
-
+/**
+ * Metodo que actualiza el puntaje de casa objeto en el front, 
+ * dependera del combo box, modificara el objeto correspondiente
+ * @param name 
+ * @param value 
+ */
   public changePuntaje(name, value) {
     let parametro = this.getFc(name).value
     let index = 0;
@@ -314,6 +325,10 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   }
 
 
+  /**
+   * metodo que busca la ciudades asociadas a un pais que se este buscando
+   * este se puede modificar en un futuro para traer mas variables dependiendo de cada pais
+   */
   public buscarCiudades(): void {
     if (this.formG.get("idPais").valid) {
       /*
@@ -358,6 +373,54 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
     }
   }
+
+
+
+  public getValorPunto(name):number{
+    let parametro = this.getFc(name).value
+    let pais = <Pais> this.mapaPaises[parametro.toLocaleLowerCase()];
+    if(this.configPais || pais === undefined) return 0;
+    return pais.valuePoint;
+  }
+
+  public updateValorPunto(name, value):void{
+    let parametro = this.getFc(name).value
+    if(this.configPais) return;
+    this.mapaPaises[parametro.toLocaleLowerCase()].valuePoint = value;
+  }
+
+  public saveValorPunto(name):void{
+    let parametro = this.getFc(name).value
+    let pais = <Pais>this.mapaPaises[parametro.toLocaleLowerCase()];
+    this.parametrosService.updateValorPuntoPais(pais).subscribe(data => {
+    this.getFc(name).setValue(data.name);
+    this.alertService.messageSuccesTransaction();
+  }, err => {
+    if (err.status === 404) {
+      this.alertService.messageErrorTransaction("No se pudo actualizar el valor por punto");
+      return;
+    } else if (err.status === 500) {
+      this.alertService.messageErrorSystem();
+    }
+  });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
