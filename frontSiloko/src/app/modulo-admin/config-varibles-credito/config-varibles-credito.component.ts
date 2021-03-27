@@ -34,6 +34,10 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   private mapaPaises = {};
 
 
+  public configPais = true;
+  public puntajePais =0;
+  public valorPunto =0;
+
 
   constructor(private formBuilder: FormBuilder, private alertService: AlertBannerService, private parametrosService: ParametrosCupoCreditoService) {
     this.formG = this.generateForm();
@@ -135,6 +139,10 @@ export class ConfigVariblesCreditoComponent implements OnInit {
     let parametro = this.getFc(name).value
     let puntos = 0;
 
+   
+
+
+
     if (!parametro) {
       return 0;
     } else {
@@ -180,8 +188,21 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
 
 
-      case 'idProducto': ;
+      case 'idProducto':  this.parametrosService.updatePuntajeProductoTelefonia(parametro).subscribe(data => {
+        let index = this.listProductosTelefonia.indexOf(parametro);
+        this.listProductosTelefonia[index] = <ProductoTelefonia> data;
+        this.getFc(name).setValue(data);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      })
         break;
+
       case 'idRangoAnt':this.parametrosService.updatePuntajeRangoAntiguedad(parametro).subscribe(data => {
         let index = this.listRangoAntiguedad.indexOf(parametro);
         this.listRangoAntiguedad[index] = <RangoAntiguedad> data;
@@ -199,7 +220,19 @@ export class ConfigVariblesCreditoComponent implements OnInit {
         break;
 
 
-      case 'idRangoCant':
+      case 'idRangoCant':this.parametrosService.updatePuntajeRangoCantidad(parametro).subscribe(data => {
+        let index = this.listRangosCantidad.indexOf(parametro);
+        this.listRangosCantidad[index] = <RangoCantidadProductos> data;
+        this.getFc(name).setValue(data);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      });
         break;
       case 'idEstrato': this.parametrosService.updatePuntajeEstratoEconomico(parametro).subscribe(data => {
         let index = this.listEstratoEco.indexOf(parametro);
@@ -217,7 +250,22 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
         break;
 
-      case 'idPais': ;
+      case 'idPais': 
+        let pais = <Pais>this.mapaPaises[parametro.toLocaleLowerCase()];
+        pais.amountPoints = this.puntajePais;
+        this.parametrosService.updatePuntajePais(pais).subscribe(data => {
+        this.mapaPaises[data.name.toLocaleLowerCase()] = data;
+        this.puntajePais = data.amountPoints;
+        this.getFc(name).setValue(data.name);
+        this.alertService.messageSuccesTransaction();
+      }, err => {
+        if (err.status === 404) {
+          this.alertService.messageErrorTransaction("No se pudo actualizar el puntaje");
+          return;
+        } else if (err.status === 500) {
+          this.alertService.messageErrorSystem();
+        }
+      });
         break;
 
       default:
@@ -232,16 +280,26 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
     switch (name) {
       case 'idPais':
-        break;
+        this.puntajePais = value;
+        break;  
       case 'idCiudad':
         index = this.listCiudades.indexOf(parametro);
         this.listCiudades[index].amountPoints = Number(value);
         break;
       case 'idProducto':
+        index = this.listProductosTelefonia.indexOf(parametro);
+        this.listProductosTelefonia[index].amountPoints = Number(value);
+        break;
 
       case 'idRangoAnt':
+        index = this.listRangoAntiguedad.indexOf(parametro);
+        this.listRangoAntiguedad[index].amountPoints = Number(value);
+        break;
 
       case 'idRangoCant':
+        index = this.listRangosCantidad.indexOf(parametro);
+        this.listRangosCantidad[index].amountPoints = Number(value);
+        break;
 
       case 'idEstrato':
         index = this.listEstratoEco.indexOf(parametro);
@@ -256,7 +314,7 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   }
 
 
-  public onSubmit(): void {
+  public buscarCiudades(): void {
     if (this.formG.get("idPais").valid) {
       /*
       this.buscando = true; 
@@ -271,8 +329,15 @@ export class ConfigVariblesCreditoComponent implements OnInit {
         this.formG.get("idCiudad").setValue('');
         this.listCiudades = [];
         this.alertService.messageErrorNofound(" Pais ");
+        this.configPais= true;
+        this.puntajePais = 0;
       } else {
+
+        
         let idPais = paisTmp.id;
+        this.configPais= false;
+        this.puntajePais = paisTmp.amountPoints
+        
         this.parametrosService.getListCiudadesByPais(idPais).subscribe((data) => {
           this.formG.get("idCiudad").setValue('')
           this.listCiudades = <Ciudad[]>data;

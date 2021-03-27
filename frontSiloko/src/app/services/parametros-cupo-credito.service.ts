@@ -81,6 +81,20 @@ export class ParametrosCupoCreditoService {
     return this.http.get<EstratoEconomico[]>(this.urlProvider.getListEstratoEconomico,{headers:this.headers});
   }
 
+
+/**
+ * Metodo que actualiza el puntaje de credito de alguna ciudad.
+ * @param ciudad 
+ * @returns 
+ */
+ public updatePuntajePais(pais:Pais):Observable<Pais>{
+  return this.http.put<Pais>(this.urlProvider.setUpdatePuntajePais,pais,{headers:this.headers});
+}
+
+
+
+
+
 /**
  * Metodo que actualiza el puntaje de credito de alguna ciudad.
  * @param ciudad 
@@ -102,12 +116,31 @@ export class ParametrosCupoCreditoService {
 
 
   /**
- * Metodo que actualiza el puntaje de un estrato economico
+ * Metodo que actualiza el puntaje de un rango de antiguedad
  * @param ciudad 
  * @returns 
  */
  public updatePuntajeRangoAntiguedad(rango:RangoAntiguedad):Observable<RangoAntiguedad>{
   return this.http.put<RangoAntiguedad>(this.urlProvider.setUpdatePuntajeRangoAntiguedad,rango,{headers:this.headers});
+}
+
+
+/**
+ * Metodo que actualiza el puntaje de un producto de telfonia
+ * @param ciudad 
+ * @returns 
+ */
+ public updatePuntajeProductoTelefonia(producto:ProductoTelefonia):Observable<ProductoTelefonia>{
+  return this.http.put<ProductoTelefonia>(this.urlProvider.setUpdatePuntajeProductoTel,producto,{headers:this.headers});
+}
+
+/**
+ * Metodo que actualiza el puntaje de un producto de telfonia
+ * @param ciudad 
+ * @returns 
+ */
+ public updatePuntajeRangoCantidad(rango:RangoCantidadProductos):Observable<RangoCantidadProductos>{
+  return this.http.put<RangoCantidadProductos>(this.urlProvider.setUpdatePuntajeRangoCantidadProductos,rango,{headers:this.headers});
 }
 
 

@@ -30,7 +30,7 @@
 
                         <div class="col form-group" style="margin-inline-start: 50px;
                         margin-block-start: 10px;">
-                            <button (click)="onSubmit()" mat-raised-button class="color-binance align-middle"
+                            <button (click)="buscarCiudades()" mat-raised-button class="color-binance align-middle"
                                 [disabled]="getFc('idPais').errors">Buscar</button>
                         </div>
                     </div>
@@ -67,13 +67,14 @@
 
                         <div class="col">
                             <mat-form-field>
-                                <input  matInput type="number">
+                                <input (change)="changePuntaje('idPais',$event.target.value)" [disabled]="configPais" [value]="puntajePais" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
-                            <input  class="item-title btn" type="button"
-                                value="guardar">
+                            <input [disabled]="configPais" class="item-title btn" type="button"
+                               (click)="setUpdate('idPais')" value="guardar">
                         </div>
 
                     </div>
@@ -255,15 +256,16 @@
 
                         <div class="col">
                             <mat-form-field>
-                                <input [disabled]="getFc('idProducto').errors" [value]="getPuntaje('idProducto')"
-                                    matInput type="number">
+                                <input (change)="changePuntaje('idProducto',$event.target.value)" [disabled]="getFc('idProducto').errors" [value]="getPuntaje('idProducto')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
                         <div class="col">
                             <input [disabled]="getFc('idProducto').errors" class="item-title btn" type="button"
-                                value="guardar">
+                               (click)="setUpdate('idProducto')" value="guardar">
                         </div>
+
 
 
                     </div>
@@ -291,17 +293,18 @@
 
 
 
+                       
+
                         <div class="col">
                             <mat-form-field>
-                                <input [disabled]="getFc('idRangoCant').errors" [value]="getPuntaje('idRangoCant')"
-                                    matInput type="number">
+                                <input (change)="changePuntaje('idRangoCant',$event.target.value)" [disabled]="getFc('idRangoCant').errors" [value]="getPuntaje('idRangoCant')" matInput
+                                    type="number">
                             </mat-form-field>
                         </div>
 
-
                         <div class="col">
                             <input [disabled]="getFc('idRangoCant').errors" class="item-title btn" type="button"
-                                value="guardar">
+                               (click)="setUpdate('idRangoCant')" value="guardar">
                         </div>
 
 
