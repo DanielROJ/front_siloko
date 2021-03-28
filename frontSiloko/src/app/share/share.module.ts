@@ -22,13 +22,16 @@ import { ClienteService } from '../services/cliente.service';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ParametrosCupoCreditoService } from '../services/parametros-cupo-credito.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FooterComponent } from './footer/footer.component';
+import { ProductoCreditoService } from '../services/producto-credito.service';
 
 @NgModule({
-  declarations: [PerfilComponentComponent, VistaGeneralComponent],
+  declarations: [PerfilComponentComponent, VistaGeneralComponent, FooterComponent],
   imports: [
     CommonModule
   ],
   exports:[
+    FooterComponent,
     CurrencyPipe, 
     CommonModule,
     MatFormFieldModule,
@@ -51,6 +54,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatProgressSpinnerModule,
     MatTabsModule,
     MatAutocompleteModule],
-    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService]
+    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService, ProductoCreditoService]
 })
 export class ShareModule { }

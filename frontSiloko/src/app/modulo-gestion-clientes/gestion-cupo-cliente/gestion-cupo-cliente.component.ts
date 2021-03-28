@@ -15,16 +15,16 @@ import { CupoManualComponent } from '../Dialogs/cupo-manual/cupo-manual.componen
 })
 export class GestionCupoClienteComponent implements OnInit {
 
-  private cliente:Cliente;
-  private funcionario:Funcionario;
+  private cliente: Cliente;
+  private funcionario: Funcionario;
 
 
 
-  public cupoCredito:CupoCredito;
-  public moneda:string;
+  public cupoCredito: CupoCredito;
+  public moneda: string;
 
-  constructor(private clienteService:ClienteService, private alertBanner:AlertBannerService, private dialog:MatDialog) { 
-    this.cliente  = <Cliente>JSON.parse(localStorage.getItem("client"));
+  constructor(private clienteService: ClienteService, private alertBanner: AlertBannerService, private dialog: MatDialog) {
+    this.cliente = <Cliente>JSON.parse(localStorage.getItem("client"));
     this.cupoCredito = this.cliente.credit;
     this.moneda = this.cliente.city.country.typeCoin;
   }
@@ -32,79 +32,79 @@ export class GestionCupoClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private UpdateCookieCliente(cliente:Cliente):void{
+  private UpdateCookieCliente(cliente: Cliente): void {
     localStorage.removeItem("client");
-    localStorage.setItem("client",JSON.stringify(cliente));
+    localStorage.setItem("client", JSON.stringify(cliente));
   }
 
 
-  BloquearCupo():void{
-    this.clienteService.setBloquearCupoCredito(this.cliente.id,2).subscribe(data=>{
-      this.cupoCredito = <CupoCredito> data;
-      this.cliente.credit = <CupoCredito> data;
+  BloquearCupo(): void {
+    this.clienteService.setBloquearCupoCredito(this.cliente.id, 2).subscribe(data => {
+      this.cupoCredito = <CupoCredito>data;
+      this.cliente.credit = <CupoCredito>data;
 
       this.UpdateCookieCliente(this.cliente);
-      
-      if(data){
+
+      if (data) {
         this.alertBanner.messageSuccesTransaction();
       }
-    },err=>{
-      if(err.status === 404 || err.status === 400){
+    }, err => {
+      if (err.status === 404 || err.status === 400) {
         this.alertBanner.messageErrorTransaction("")
-      }else if(err.status === 500){
+      } else if (err.status === 500) {
         this.alertBanner.messageErrorSystem();
       }
     })
   }
 
 
-  DesbloquearCupo():void{
-    this.clienteService.setDesbloquearCupoCredito(this.cliente.id,2).subscribe(data=>{
-      this.cupoCredito = <CupoCredito> data;
-      this.cliente.credit = <CupoCredito> data;
+  DesbloquearCupo(): void {
+    this.clienteService.setDesbloquearCupoCredito(this.cliente.id, 2).subscribe(data => {
+      this.cupoCredito = <CupoCredito>data;
+      this.cliente.credit = <CupoCredito>data;
 
       this.UpdateCookieCliente(this.cliente);
-      
-      if(data){
+
+      if (data) {
         this.alertBanner.messageSuccesTransaction();
       }
-    },err=>{
-      if(err.status === 404 || err.status === 400){
+    }, err => {
+      if (err.status === 404 || err.status === 400) {
         this.alertBanner.messageErrorTransaction("")
-      }else if(err.status === 500){
+      } else if (err.status === 500) {
         this.alertBanner.messageErrorSystem();
       }
     })
   }
 
 
-  GenerarCupoAutmatico():void{
-    this.clienteService.setGenerarCupoCredito(this.cliente.id,2).subscribe(data=>{
-      this.cupoCredito = <CupoCredito> data;
-      this.cliente.credit = <CupoCredito> data;
+  GenerarCupoAutmatico(): void {
+    this.clienteService.setGenerarCupoCredito(this.cliente.id, 2).subscribe(data => {
+      this.cupoCredito = <CupoCredito>data;
+      this.cliente.credit = <CupoCredito>data;
 
       this.UpdateCookieCliente(this.cliente);
-      
-      if(data){
+
+      if (data) {
         this.alertBanner.messageSuccesTransaction();
       }
-    },err=>{
-      if(err.status === 404 || err.status === 400){
+    }, err => {
+      if (err.status === 404 || err.status === 400) {
         this.alertBanner.messageErrorTransaction("")
-      }else if(err.status === 500){
+      } else if (err.status === 500) {
         this.alertBanner.messageErrorSystem();
       }
     })
   }
 
 
-  asignarCupo():void{
-    this.dialog.open(CupoManualComponent,{
-      panelClass:"card-interna",
-      data:{moneda:this.moneda, credito: this.cliente.credit.id}
-    }).afterClosed().subscribe(data=>{
-      this.cliente.credit = <CupoCredito> data.data;
-      this.cupoCredito = <CupoCredito> data.data;
+  asignarCupo(): void {
+    this.dialog.open(CupoManualComponent, {
+      panelClass: "card-interna",
+      data: { moneda: this.moneda, credito: this.cliente.credit.id }
+    }).afterClosed().subscribe(data => {
+      this.cliente.credit = <CupoCredito>data.data;
+      this.cupoCredito = <CupoCredito>data.data;
       this.UpdateCookieCliente(this.cliente);
     });
   }

@@ -1,1 +1,93 @@
-<p>generar-solicitud works!</p>
+<section class="container">
+
+    <mat-card>
+        <mat-card-title style="text-align: center;">
+            Solicitud Siloko Credit
+        </mat-card-title>
+
+
+        <mat-card-content [formGroup]="formG" class="container">
+            <div class="container">
+                <div class="col">
+    
+                    <div class="row d-flex justify-content-center">
+    
+    
+                        <mat-form-field floatLabel="always" appearance="outline" style="width: 80%;">
+    
+                            <mat-label style="font-size: x-large">Ingresar Siloko Code</mat-label>
+    
+                            <input formControlName="silokoCode" type="text" matInput placeholder="# siloko code">
+                            <mat-error *ngIf="hasErros('silokoCode') && getFc('silokoCode').errors.required">
+                                {{messageError.getMessageRequired("Siloko code")}}</mat-error>
+                            <mat-error *ngIf="hasErros('silokoCode') && getFc('silokoCode').errors.pattern">
+                                {{messageError.getMessageRequiredNumber("Siloko Code")}}</mat-error>
+                        </mat-form-field>
+    
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent"
+                            style="font-size: 50px; vertical-align: top">search</mat-icon>
+    
+                        <div class="col form-group" style="margin-inline-start: 50px;
+                        margin-block-start: 10px;">
+                            <button (click)="BuscarProducto()"  mat-raised-button class="color-binance align-middle"
+                                [disabled]="getFc('silokoCode').errors">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <div class="container card-interna">
+                <div class="col">
+                    <div class="row item-control">
+
+                        <div class="col" style="text-align: center;">
+                            <h4 >Producto / Electrodomestico </h4>
+                        </div>
+                    </div>
+
+                    <div *ngIf="productoCredito" class="row item-control card-interna" style="margin-bottom: 2%; text-align: center;">
+
+                        
+                            <div  class="col-4 align-middle form-group">
+                                <h6 class="item-title">Nombre producto:</h6>
+                                <p style="font-size: medium;">{{productoCredito.nameProduct}}</p>
+                            </div>
+
+                            <div class="col-4 align-middle form-group">
+                                <h6 class="item-title">Precio producto:</h6>
+                                <p style="font-size: medium;">{{productoCredito.valueProduct|currency:moneda:"symbol"}}</p>
+                            </div>
+
+                            <div class="col-4 align-middle form-group">
+                                <h6 class="item-title">Codigo siloko:</h6>
+                                <p style="font-size: medium;">#{{productoCredito.codeSiloko}}</p>
+                            </div>
+
+                            
+                            <div class="form-group" style="margin-inline: auto;">
+                               
+                                    <div >
+                                    <h6 color="primary">Generar Solicitud</h6>
+                                    </div>
+                                    <div>
+                                    <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                                        <mat-icon>gavel</mat-icon>
+                                      </button>
+                                    </div>             
+                            </div>
+                                       
+                    </div>
+        
+                </div>
+
+
+                    </div>
+        </mat-card-content>
+
+
+        </mat-card>
+
+
+        

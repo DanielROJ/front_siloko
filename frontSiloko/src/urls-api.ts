@@ -43,7 +43,7 @@ export class UrlsApi {
     public readonly setUpdatePuntajeEstratoEconomico = String(this.host + "/estrato/puntaje")
 
 
-
-
+     //------------------------------END-POINT---Producto credito----------------------////////////
+     public readonly getProductoCreditoBySilokoCode = String(this.host + "/productoCredito/codigoSiloko");
 
 }
