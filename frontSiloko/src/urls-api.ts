@@ -10,6 +10,7 @@ export class UrlsApi {
     public readonly setBloquearCupo = String(this.host + "/cliente/cupoCredito/bloquear")
     public readonly setDesbloquearCupo = String(this.host + "/cliente/cupoCredito/desbloquear")
     public readonly setGenerarCupo = String(this.host + "/cliente/cupoCredito/generar")
+    public readonly setAsignarCupoManual = String(this.host + "/cliente/cupoCredito/manual")
 
 
     //------------------------------END-POINT---CIUDADES ----------------------////////////

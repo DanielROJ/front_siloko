@@ -1,0 +1,25 @@
+<div mat-dialog-content >
+
+    <div  style="text-align: center;">
+      <h2 class="row">Ingreso manual de cupo de crédito</h2>
+    </div>
+  
+    <form  style="margin-inline-start: 17px;" [formGroup]="formG" class="col-12">
+      <div class="row form-group col-12" >
+        <label>Valor asignado:</label>
+        <input type="number" formControlName="setSaldo" class="form-control" placeholder={{moneda}} required min="0">
+      </div>
+  
+  
+      <div class="row form-group col-12">
+        <div class="col">
+          <input type="button" (click)="save()"  [disabled]="formG.invalid" class="form-control btn btn-success"
+            value="Consignar">
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div style="margin-inline-start: auto;" class="d-flex justify-content-center" mat-dialog-actions>
+    <button id="close" class="row btn form-control" mat-button mat-dialog-close>Cancelar</button>
+  </div>

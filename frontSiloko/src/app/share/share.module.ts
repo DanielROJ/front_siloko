@@ -20,7 +20,6 @@ import { AlertBannerService } from './services_share/alert-banner.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ClienteService } from '../services/cliente.service';
 import {MatTabsModule} from '@angular/material/tabs';
-import { CupoCreditoService } from '../services/cupo-credito.service';
 import { ParametrosCupoCreditoService } from '../services/parametros-cupo-credito.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
@@ -52,6 +51,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatProgressSpinnerModule,
     MatTabsModule,
     MatAutocompleteModule],
-    providers:[AlertBannerService,ClienteService,CupoCreditoService,ParametrosCupoCreditoService]
+    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService]
 })
 export class ShareModule { }

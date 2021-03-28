@@ -38,4 +38,9 @@ export class ClienteService {
     return this.http.post<CupoCredito>(this.urlProvider.setGenerarCupo+"?cliente="+idCliente+"&funcionario="+idFuncionario,{},{headers:this.headers});
   }
 
+
+  public setAsginarCupoCreditoManual(idFuncionario:Number, cupoCredito: CupoCredito): Observable<CupoCredito>{
+    return this.http.put<CupoCredito>(this.urlProvider.setAsignarCupoManual+"?funcionario="+idFuncionario,cupoCredito,{headers:this.headers});
+  }
+
 }
