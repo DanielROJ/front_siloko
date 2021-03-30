@@ -20,4 +20,8 @@ export class SolicitudCreditoService {
   public setGenerarSolicitudCredito(solicitud:SolicitudCredito):Observable<SolicitudCredito>{
    return  this.http.post<SolicitudCredito>(this.urlProvider.setGenerarSolicitudCredito,solicitud,{headers:this.headers});
   }
+
+  public getSolicitudByCodeAndDocClient(codigoCredito:string, documento:number):Observable<SolicitudCredito>{
+    return this.http.get<SolicitudCredito>(this.urlProvider.getSolicitudByCodeAndDocClient+"?codigo="+codigoCredito+"&documento="+documento);
+  }
 }

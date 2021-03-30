@@ -1,0 +1,14 @@
+.card-interna{
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+}
+
+
+.item-control{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+.item-title{
+    margin: 15px 0px;
+}

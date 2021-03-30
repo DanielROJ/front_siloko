@@ -1,1 +1,113 @@
-<p>pago-producto works!</p>
+<section class="container">
+
+    <mat-card>
+        <mat-card-title style="text-align: center;">
+            Pago y Financiación de Siloko Credit
+        </mat-card-title>
+
+        <mat-card-content [formGroup]="formG" class="container">
+            <div class="container">
+                <div class="col">
+
+                    <div class="row d-flex justify-content-center">
+
+
+                        <mat-form-field floatLabel="always" appearance="outline" style="width: 80%;">
+
+                            <mat-label style="font-size: x-large">Código Autorización</mat-label>
+
+                            <input formControlName="codigoCredito" type="text" matInput placeholder="# código crédito">
+                            <mat-hint>Incluir simbolo de " - "</mat-hint>
+                            <mat-error *ngIf="hasErros('codigoCredito') && getFc('codigoCredito').errors.required">
+                                {{messageError.getMessageRequired("Código Autorización")}}</mat-error>
+                        </mat-form-field>
+                        
+
+                        <mat-form-field floatLabel="always" appearance="outline" style="width: 80%;">
+
+                            <mat-label style="font-size: x-large">Identificación Cliente</mat-label>
+
+                            <input formControlName="idCliente" type="text" matInput placeholder="# ID cliente">
+                            <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.required">
+                                {{messageError.getMessageRequired("Identificación Cliente")}}</mat-error>
+                            <mat-error *ngIf="hasErros('idCliente') && getFc('idCliente').errors.pattern">
+                                {{messageError.getMessageRequiredNumber("Identificación Cliente")}}</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                        <div class="row d-flex justify-content-center">
+                            <button mat-raised-button color="accent" (click)="BuscarSoliciutdCredito()"
+                            [disabled]="getFc('idCliente').errors || getFc('codigoCredito').errors">Buscar</button>
+                        </div>
+
+                </div>
+            </div>
+
+
+            <div *ngIf="solicitdCredito" class="container card-interna" style="margin-top: 2.5%;">
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="form-group">
+                            <h6 class="item-title">Nombre producto:</h6>
+                            <p style="font-size: medium;">{{solicitdCredito.product.nameProduct}}</p>
+                        </div>
+
+                        <div class="form-group">
+                            <h6 class="item-title">Precio producto:</h6>
+                            <p style="font-size: medium;">{{solicitdCredito.product.valueProduct|currency:moneda:"symbol"}}</p>
+                        </div>
+
+                        <div class="form-group">
+                            <h6 class="item-title">Código Autorización:</h6>
+                            <p style="font-size: medium;">#{{solicitdCredito.codeCredito}}</p>
+                        </div>
+
+                        <div class="form-group">
+                            <h6 class="item-title">Estado de Solicitud:</h6>
+                            <p style="font-size: medium;">{{solicitdCredito.status.description}}</p>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="col-6">
+                        <div *ngIf="solicitdCredito.datefinalRequest=== null && solicitdCredito.status.status !== 'Rechazado'" class="form-group" style="margin-top: 2.5%;">
+                        <h6>Número de cuotas</h6>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Seleccionar cuotas</mat-label>
+                            <mat-select formControlName="nCuotas" required>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let estrato of []" [value]="estrato">
+                                    {{estrato.numClassEconomic}}</mat-option>
+                            </mat-select>
+
+                            <mat-error *ngIf="hasErros('nCuotas') && getFc('nCuotas').errors.required">
+                                {{messageError.getMessageRequired(" Número de cuotas ")}}</mat-error>
+
+                        </mat-form-field>
+
+                        </div>
+                        <div  *ngIf="solicitdCredito.datefinalRequest=== null && solicitdCredito.status.status !== 'Rechazado'" class="form-group">
+                            <h6 color="accent">Generar Solicitud</h6>
+                            
+                            <button mat-fab color="accent"  aria-label="Example icon button with a bookmark icon">
+                                <mat-icon>payment</mat-icon>
+                              </button>
+                             
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </mat-card-content>
+
+
+
+
+    </mat-card>
+
+</section>
