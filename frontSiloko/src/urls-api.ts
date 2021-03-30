@@ -12,6 +12,8 @@ export class UrlsApi {
     public readonly setGenerarCupo = String(this.host + "/cliente/cupoCredito/generar")
     public readonly setAsignarCupoManual = String(this.host + "/cliente/cupoCredito/manual")
 
+    //------------------------------END-POINT---Solicitud--Credito----------------------////////////
+    public readonly  setGenerarSolicitudCredito = String(this.host+"/solicitudCredito/generar")
 
     //------------------------------END-POINT---CIUDADES ----------------------////////////
     public readonly getListCiudades = String(this.host + "/ciudad/list")

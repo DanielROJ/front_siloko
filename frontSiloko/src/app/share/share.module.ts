@@ -24,6 +24,7 @@ import { ParametrosCupoCreditoService } from '../services/parametros-cupo-credit
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FooterComponent } from './footer/footer.component';
 import { ProductoCreditoService } from '../services/producto-credito.service';
+import { SolicitudCreditoService } from '../services/solicitud-credito.service';
 
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent, FooterComponent],
@@ -54,6 +55,6 @@ import { ProductoCreditoService } from '../services/producto-credito.service';
     MatProgressSpinnerModule,
     MatTabsModule,
     MatAutocompleteModule],
-    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService, ProductoCreditoService]
+    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService, ProductoCreditoService, SolicitudCreditoService]
 })
 export class ShareModule { }
