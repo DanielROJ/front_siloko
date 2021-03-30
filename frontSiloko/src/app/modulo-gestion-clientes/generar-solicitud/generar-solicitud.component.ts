@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Cliente } from 'src/app/models/Cliente';
 import { Funcionario } from 'src/app/models/Funcionario';
 import { ProductoCredito } from 'src/app/models/ProductoCredito';
@@ -8,6 +9,7 @@ import { ProductoCreditoService } from 'src/app/services/producto-credito.servic
 import { SolicitudCreditoService } from 'src/app/services/solicitud-credito.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 import { ValidatorsMessage } from 'src/app/validatorsMessage';
+import { RespuestaSolicitudComponent } from '../Dialogs/respuesta-solicitud/respuesta-solicitud.component';
 
 @Component({
   selector: 'app-generar-solicitud',
@@ -22,8 +24,7 @@ export class GenerarSolicitudComponent implements OnInit {
   public moneda :String;
 
   constructor(private formBuilder:FormBuilder, private productoService:ProductoCreditoService, private alertService:AlertBannerService,
-    
-    private solicitudCredito: SolicitudCreditoService) {
+    private solicitudCredito: SolicitudCreditoService, private dialog:MatDialog) {
     this.formG = this.generateForm();
     this.messageError = new ValidatorsMessage();
    }
@@ -84,8 +85,16 @@ export class GenerarSolicitudComponent implements OnInit {
     }
 
     this.solicitudCredito.setGenerarSolicitudCredito(solicitud).subscribe(data=>{
-      console.log(data)
       this.alertService.messageSuccesTransaction();
+      this.dialog.open(RespuestaSolicitudComponent,{
+        disableClose:true,
+        closeOnNavigation:false,
+        data: <SolicitudCredito> data
+      }).afterClosed().subscribe(()=>{
+        this.formG.reset()
+        this.formG = this.generateForm();
+        this.productoCredito = undefined;
+      })
     },err=>{
         if(err.status === 404){
           this.formG.reset()

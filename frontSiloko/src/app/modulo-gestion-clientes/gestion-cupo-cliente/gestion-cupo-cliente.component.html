@@ -78,7 +78,7 @@
                         <input class="btn color-binance" type="button" (click)="GenerarCupoAutmatico()" value="Generar cupo automaticamente">
                     </div>
 
-                    <div class="col button-item-credit">
+                    <div class="col button-item-credit" *ngIf="cupoCredito !== null">
                         <input class="btn color-binance" (click)="asignarCupo()" type="button" value="Asignar cupo manualmente">
                     </div>
 

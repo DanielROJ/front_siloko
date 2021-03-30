@@ -89,8 +89,9 @@ export class GestionCupoClienteComponent implements OnInit {
         this.alertBanner.messageSuccesTransaction();
       }
     }, err => {
+      console.log(err)
       if (err.status === 404 || err.status === 400) {
-        this.alertBanner.messageErrorTransaction("")
+        this.alertBanner.messageErrorTransaction(err.error.message)
       } else if (err.status === 500) {
         this.alertBanner.messageErrorSystem();
       }

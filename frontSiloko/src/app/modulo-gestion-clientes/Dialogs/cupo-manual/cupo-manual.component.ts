@@ -25,6 +25,9 @@ export class CupoManualComponent implements OnInit {
 
   }
 
+
+  
+
   save() {
     if(this.formG.valid){
       let valor = Number(this.formG.get("setSaldo").value)

@@ -11,10 +11,11 @@ import { ShareModule } from '../share/share.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { GenerarSolicitudComponent } from './generar-solicitud/generar-solicitud.component';
 import { CupoManualComponent } from './Dialogs/cupo-manual/cupo-manual.component';
+import { RespuestaSolicitudComponent } from './Dialogs/respuesta-solicitud/respuesta-solicitud.component';
 
 
 @NgModule({
-  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent, MenuTabsGestionComponent, GenerarSolicitudComponent, CupoManualComponent],
+  declarations: [PerfilClienteComponent, GestionCupoClienteComponent, ListaSolicitudesCreditoComponent, BusquedaClientesComponent, MenuTabsGestionComponent, GenerarSolicitudComponent, CupoManualComponent, RespuestaSolicitudComponent],
   imports: [
     ModuloGestionClientesRoutingModule,
     ShareModule
