@@ -73,14 +73,14 @@
 
                     
                     <div class="col-6">
-                        <div *ngIf="solicitdCredito.datefinalRequest=== null && solicitdCredito.status.status !== 'Rechazado'" class="form-group" style="margin-top: 2.5%;">
+                        <div *ngIf="solicitdCredito.status.id===1 && solicitdCredito.status.status !== 'Rechazado'" class="form-group" style="margin-top: 2.5%;">
                         <h6>Número de cuotas</h6>
                         <mat-form-field appearance="fill">
                             <mat-label>Seleccionar cuotas</mat-label>
                             <mat-select formControlName="nCuotas" required>
                                 <mat-option>--</mat-option>
-                                <mat-option *ngFor="let estrato of []" [value]="estrato">
-                                    {{estrato.numClassEconomic}}</mat-option>
+                                <mat-option *ngFor="let numero of numeroCuotas" [value]="numero">
+                                    {{numero}}</mat-option>
                             </mat-select>
 
                             <mat-error *ngIf="hasErros('nCuotas') && getFc('nCuotas').errors.required">
@@ -89,10 +89,10 @@
                         </mat-form-field>
 
                         </div>
-                        <div  *ngIf="solicitdCredito.datefinalRequest=== null && solicitdCredito.status.status !== 'Rechazado'" class="form-group">
+                        <div  *ngIf="solicitdCredito.status.id===1 && solicitdCredito.status.status !== 'Rechazado'" class="form-group">
                             <h6 color="accent">Generar Solicitud</h6>
                             
-                            <button mat-fab color="accent"  aria-label="Example icon button with a bookmark icon">
+                            <button [disabled]="hasErros('nCuotas') || getFc('nCuotas').value<=0" (click)="InciarFinanciacion()" mat-fab color="accent"  aria-label="Example icon button with a bookmark icon">
                                 <mat-icon>payment</mat-icon>
                               </button>
                              

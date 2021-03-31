@@ -24,4 +24,16 @@ export class SolicitudCreditoService {
   public getSolicitudByCodeAndDocClient(codigoCredito:string, documento:number):Observable<SolicitudCredito>{
     return this.http.get<SolicitudCredito>(this.urlProvider.getSolicitudByCodeAndDocClient+"?codigo="+codigoCredito+"&documento="+documento);
   }
+
+  public setFinanciacionSolicitudCredito(idSolicitud:number, idFuncionarioAlm:number, numeroCuotas:number):Observable<boolean>{
+    return this.http.put<boolean>(
+      this.urlProvider.setFinanciacionSolicitudCredito+"?solicitud="+idSolicitud+"&funcionarioA="+idFuncionarioAlm+"&cuotas="+numeroCuotas,
+      {},{headers:this.headers});
+  }
+
+
+
+
+
 }
+

@@ -69,16 +69,16 @@
                             <ng-container *ngIf="cliente.credit!==null">
                             <div class="form-group">
                                 <label>
-                                    <h5>Cupo total disponible:</h5>
+                                    <h5>Cupo total Asignado:</h5>
                                 </label>
                                 <p>{{cliente.credit.totalSizeCredit|currency:moneda:"symbol"}}</p>
                             </div>
 
                             <div class="form-group">
                                 <label>
-                                    <h5>Cupo total en transacción:</h5>
+                                    <h5>Cupo total Utilizado:</h5>
                                 </label>
-                                <p>{{cliente.credit.sizeTransactionCredit|currency:moneda:"symbol"}}</p>
+                                <p>{{cliente.credit.sizeCreditUsed|currency:moneda:"symbol"}}</p>
                             </div>
 
                             <div class="form-group">
@@ -92,7 +92,7 @@
 
                         <div class="col">
                             <div class="b-gestion row d-flex justify-content-center">
-                            <input [disabled]="cliente.credit===null" (click)="toGenerarSolicitud()" mat-raised-button class="color-binance btn "
+                            <input [disabled]="cliente.credit===null || cliente.credit.statusCredit.status==='Bloqueado'" (click)="toGenerarSolicitud()" mat-raised-button class="color-binance btn "
                                 value="Generar solicitud de credito" type="button"/>
                             </div>
                             <div class="b-gestion row d-flex justify-content-center">

@@ -16,7 +16,7 @@ export class PagoProductoComponent implements OnInit {
   public messageError:ValidatorsMessage;
   public solicitdCredito:SolicitudCredito;
   public moneda = ""
-
+  public numeroCuotas = [1,2,3,4,5,6,7,8,9,10,11,12];
 
   constructor(private formBuilder:FormBuilder, private solicitudService:SolicitudCreditoService, private alertService:AlertBannerService) {
     this.formG = this.generateForm();
@@ -68,5 +68,40 @@ export class PagoProductoComponent implements OnInit {
 
     }
   }
+
+
+  InciarFinanciacion():void{
+    if(this.getFc("nCuotas").valid && this.solicitdCredito){
+      let cuotas = Number(this.getFc("nCuotas").value);
+      let idSolicitud = this.solicitdCredito.id;
+      let idFuncionarioAlm = 1 //Este  se dbe sacar de la cookie de inicio de sesion
+      this.solicitudService.setFinanciacionSolicitudCredito(idSolicitud,idFuncionarioAlm,cuotas).subscribe(data=>{
+        this.alertService.messageSuccesFinanciar();
+        this.solicitdCredito = null
+        this.formG.reset()
+        this.formG = this.generateForm();
+      },err=>{
+        console.log(err);
+        if(err.status === 404){
+          this.formG.reset()
+          this.formG = this.generateForm();
+          this.alertService.messageErrorNofound("Solicitud de credito");
+          return;
+        }else if(err.status === 500){
+          this.formG.reset()
+          this.formG = this.generateForm();
+          this.alertService.messageErrorSystem();
+        }
+      })
+    }
+  }
+
+
+
+
+
+
+
+
 
 }

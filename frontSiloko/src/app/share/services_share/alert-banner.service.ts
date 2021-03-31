@@ -52,6 +52,18 @@ export class AlertBannerService {
   } 
 
 
+  public messageSuccesFinanciar():Promise<Object>{
+    return Swal.fire({
+      icon: 'success',
+      title: 'El producto fue financiado correctamente',
+      background:"#212121",
+      showConfirmButton: true,
+      timerProgressBar: true,
+      timer: 3000
+    })
+  } 
+
+
 public messageErrorNofound(text:string):Promise<Object>{
   return Swal.fire({
     position: 'top-end',
@@ -64,6 +76,11 @@ public messageErrorNofound(text:string):Promise<Object>{
     timer: 1250
   })
 }
+
+
+
+
+
 
 
 /**
