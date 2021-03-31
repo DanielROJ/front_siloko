@@ -31,6 +31,10 @@ export class SolicitudCreditoService {
       {},{headers:this.headers});
   }
 
+  public getListSolicitudCreditoByIdClient(idCliente:number, nPage:number, nRows):Observable<any>{
+    return this.http.get(
+      this.urlProvider.getSolicitudCreditByIdClient+"?id="+idCliente+"&nPage="+nPage+"&nRows="+nRows,{headers:this.headers,observe:"response"});
+  }
 
 
 

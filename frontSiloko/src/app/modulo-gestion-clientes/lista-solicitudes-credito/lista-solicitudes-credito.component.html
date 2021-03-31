@@ -1,1 +1,74 @@
-<p>lista-solicitudes-credito works!</p>
+<section>
+
+    <mat-card>
+        <mat-card-title style="text-align: center;">
+            Solicitudes de Crédito
+        </mat-card-title>
+
+        <mat-card-content class="container">
+            <div class="card-interna ">
+
+                <table mat-table [dataSource]="data" style="margin-top: 2.5%;" class="table" matSort matSortActive="created" matSortDisableClear
+                    matSortDirection="desc">
+
+                     <!-- Created Column -->
+                     <ng-container matColumnDef="fechaS">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Fecha Solicitud
+                        </th>
+                        <td mat-cell class="align-middle" *matCellDef="let row">{{row.dateRequest | date}}</td>
+                    </ng-container>
+
+
+                    <!-- Number Column -->
+                    <ng-container matColumnDef="codigoCredito">
+                        <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>#Código Crédito</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.codeCredito}}</td>
+                    </ng-container>
+
+                    <!-- Title Column -->
+                    <ng-container matColumnDef="producto">
+                        <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Producto</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.product.nameProduct}}</td>
+                    </ng-container>
+
+                    <!-- State Column -->
+                    <ng-container matColumnDef="precio">
+                        <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Precio</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.product.valueProduct|currency}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nCuotas">
+                        <th mat-header-cell *matHeaderCellDef>No. Cuotas</th>
+                        <td mat-cell style="text-align: center;" class="align-middle" *matCellDef="let row">{{row.numFees}}</td>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>Estado</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.status.status}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="descripcion">
+                        <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Descripción Estado</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.status.description}}</td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row  class="align-middle" *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [length]="length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="eventPage($event)"></mat-paginator>
+
+ 
+
+
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+</section>

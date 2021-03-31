@@ -16,6 +16,7 @@ export class UrlsApi {
     public readonly  setGenerarSolicitudCredito = String(this.host+"/solicitudCredito/generar")
     public readonly  getSolicitudByCodeAndDocClient = String(this.host+"/solicitudCredito/codigoF")
     public readonly  setFinanciacionSolicitudCredito = String(this.host+"/solicitudCredito/financiar") 
+    public readonly  getSolicitudCreditByIdClient = String(this.host+"/solicitudCredito/cliente/list") 
 
     //------------------------------END-POINT---CIUDADES ----------------------////////////
     public readonly getListCiudades = String(this.host + "/ciudad/list")

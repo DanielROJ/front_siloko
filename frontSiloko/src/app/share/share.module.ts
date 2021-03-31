@@ -25,6 +25,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FooterComponent } from './footer/footer.component';
 import { ProductoCreditoService } from '../services/producto-credito.service';
 import { SolicitudCreditoService } from '../services/solicitud-credito.service';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent, FooterComponent],
@@ -54,7 +55,8 @@ import { SolicitudCreditoService } from '../services/solicitud-credito.service';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    MatAutocompleteModule],
+    MatAutocompleteModule,
+    MatPaginatorModule],
     providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService, ProductoCreditoService, SolicitudCreditoService]
 })
 export class ShareModule { }
