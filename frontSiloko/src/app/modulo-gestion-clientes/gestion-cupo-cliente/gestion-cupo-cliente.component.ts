@@ -19,7 +19,7 @@ export class GestionCupoClienteComponent implements OnInit {
   private funcionario: Funcionario;
 
 
-
+  public creditoDisponible = 0;
   public cupoCredito: CupoCredito;
   public moneda: string;
 

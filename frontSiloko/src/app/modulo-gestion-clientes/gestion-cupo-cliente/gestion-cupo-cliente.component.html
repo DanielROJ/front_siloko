@@ -1,8 +1,8 @@
-<section>
+<section style="height: 550px;">
     <mat-card class="card-interna">
-
+        <mat-card-title style="text-align: center;">Cupo de crédito</mat-card-title>
         <mat-card class="card-interna">
-            <mat-card-title style="text-align: center;">Cupo de crédito</mat-card-title>
+            
 
             <mat-card-content >
 
@@ -23,7 +23,13 @@
                         <div class="row item-credit d-flex justify-content-center">
                             <div>
                                 <h4 style="width: 350px;">Cupo total disponible</h4>
-                                <h6>{{(cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed)|currency:moneda:"symbol"}}</h6>
+                                <ng-container *ngIf="cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed>=0">                               
+                                     <h6>{{(cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed)|currency:moneda:"symbol"}}</h6>
+                                    </ng-container>
+                                       <ng-container *ngIf="(cupoCredito.totalSizeCredit-cupoCredito.sizeCreditUsed)<0">                               
+                                        <h6>{{0|currency:moneda:"symbol"}}</h6>
+                                       </ng-container>
+
                             </div>
                         </div>
 
@@ -66,20 +72,20 @@
                 <div class="row">
                     <ng-container *ngIf="cupoCredito !== null">
                     <div *ngIf="cupoCredito.statusCredit.status == 'Activo'" class="col button-item-credit">
-                        <input class="btn btn-danger" type="button"  (click)="BloquearCupo()" value="Bloquear cupo">
+                        <button class="btn btn-lg" color="warn" mat-flat-button  (click)="BloquearCupo()" style="width: 255px;">Bloquear cupo</button>
                     </div>
 
                     <div  *ngIf="cupoCredito.statusCredit.status == 'Bloqueado'"  class="col button-item-credit">
-                        <input class="btn btn-success" type="button"  (click)="DesbloquearCupo()" value="Desbloquear cupo">
+                        <button class="btn"   style="background-color: #218838; width: 255px;" mat-flat-button  (click)="DesbloquearCupo()">Desbloquear cupo</button>
                     </div>
 
                   </ng-container>
                     <div class="col button-item-credit">
-                        <input class="btn color-binance" type="button" (click)="GenerarCupoAutmatico()" value="Generar cupo automaticamente">
+                        <button class="btn btn-lg" color="accent" mat-flat-button type="button" style="width: 255px;" (click)="GenerarCupoAutmatico()" >Generar cupo automaticamente</button>
                     </div>
 
                     <div class="col button-item-credit" *ngIf="cupoCredito !== null">
-                        <input class="btn color-binance" (click)="asignarCupo()" type="button" value="Asignar cupo manualmente">
+                        <button class="btn btn-lg" color="accent" mat-flat-button (click)="asignarCupo()" style="width: 255px;" type="button">Asignar cupo manualmente</button>
                     </div>
 
                 </div>
