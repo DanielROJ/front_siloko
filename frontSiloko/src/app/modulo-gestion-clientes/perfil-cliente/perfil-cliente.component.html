@@ -6,62 +6,47 @@
         </mat-card-title>
 
         <mat-card-content class="container">
-            <div class="row card-interna" >
+            <div class="row card-interna">
                 <div class="col-6">
-                    <div class="form-group" style="margin-top: 2.5%;">
-                        <label>
-                            <h5>Nombres:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    
+                    <div class="form-group row" style="margin-top: 2.5%;">
+                        <h6 class="col-5">Nombres:</h6>
+                        <p class="col-7">{{cliente.names}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Apellidos:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Apellidos:</h6>
+                        <p class="col-7">{{cliente.surNames}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Correo Electronico:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Correo Electronico:</h6>
+                        <p class="col-7">{{cliente.email}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Identificación:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Identificación:</h6>
+                        <p class="col-7">{{cliente.idDocument}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Estrato Economico:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Estrato Economico:</h6>
+                        <p class="col-7">{{cliente.classEconomic.numClassEconomic}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Ciudad:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Ciudad:</h6>
+                        <p class="col-7">{{cliente.city.name}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Pais:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Pais:</h6>
+                        <p class="col-7">{{cliente.city.country.name}}</p>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            <h5>Rango Antiguedad:</h5>
-                        </label>
-                        <p>lksajdlkasjkld</p>
+                    <div class="form-group row">
+                        <h6 class="col-5">Rango Antiguedad:</h6>
+                        <p class="col-7">{{cliente.rangeOld.rangeOld}}</p>
                     </div>
                 </div>
 

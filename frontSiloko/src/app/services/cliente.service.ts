@@ -26,6 +26,11 @@ export class ClienteService {
    }
 
 
+   public getClienteById(idCliente:number): Observable<Cliente>{
+    return this.http.get<Cliente>(this.urlProvider.getClienteById+"?value="+idCliente,{headers:this.headers});
+  }
+
+
    public setBloquearCupoCredito(idCliente:Number, idFuncionario:Number): Observable<CupoCredito>{
      return this.http.post<CupoCredito>(this.urlProvider.setBloquearCupo+"?cliente="+idCliente+"&funcionario="+idFuncionario,{},{headers:this.headers});
    }
