@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <h6 class="col-5">Estrato Economico:</h6>
+                        <h6 class="col-5">Estrato Económico:</h6>
                         <p class="col-7">{{cliente.classEconomic.numClassEconomic}}</p>
                     </div>
 
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <h6 class="col-5">Pais:</h6>
+                        <h6 class="col-5">País:</h6>
                         <p class="col-7">{{cliente.city.country.name}}</p>
                     </div>
 
@@ -60,7 +60,11 @@
                                 <th>Precio</th>
                             </thead>
                             <tbody>
-
+                                <tr *ngFor="let item of ListClienteProductos">
+                                <td>{{item.productTel.nameProduct}}</td>
+                                <td>{{item.numberLine}}</td>
+                                <td>{{item.priceProduct}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

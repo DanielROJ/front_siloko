@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlsApi } from 'src/urls-api';
 import { Cliente } from '../models/Cliente';
+import { ClienteProductosTel } from '../models/ClienteProductosTel';
 import { CupoCredito } from '../models/CupoCredito';
 
 @Injectable({
@@ -47,5 +48,15 @@ export class ClienteService {
   public setAsginarCupoCreditoManual(idFuncionario:Number, cupoCredito: CupoCredito): Observable<CupoCredito>{
     return this.http.put<CupoCredito>(this.urlProvider.setAsignarCupoManual+"?funcionario="+idFuncionario,cupoCredito,{headers:this.headers});
   }
+
+
+
+
+  public getClienteProductosTel(idCliente:number):Observable<ClienteProductosTel[]>{
+    return this.http.get<ClienteProductosTel[]>(this.urlProvider.getClienteProductosTel+"?value="+idCliente,{headers:this.headers});
+  }
+
+
+
 
 }

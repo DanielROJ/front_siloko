@@ -1,13 +1,25 @@
 
     <div class="container">
     <mat-tab-group mat-align-tabs="center" backgroundColor="primary" style="width: 100%;">
-        <mat-tab label="Perfil cliente">
+        <mat-tab >
+            <ng-template mat-tab-label>
+                Perfil cliente
+                <mat-icon>account_box</mat-icon>  
+              </ng-template>
             <app-perfil-cliente></app-perfil-cliente>
         </mat-tab>
-        <mat-tab label="Gestión cupo de crédito">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Gestión cupo de crédito
+                <mat-icon>credit_card</mat-icon> 
+              </ng-template>
             <app-gestion-cupo-cliente></app-gestion-cupo-cliente>
         </mat-tab>
-        <mat-tab label="Historial solicitudes de crédito">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Historial solicitudes de crédito
+                <mat-icon>pageview</mat-icon>
+              </ng-template>
             <app-lista-solicitudes-credito></app-lista-solicitudes-credito>
         </mat-tab>
       </mat-tab-group>
