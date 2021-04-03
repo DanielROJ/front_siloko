@@ -8,7 +8,9 @@ import { Pais } from 'src/app/models/Pais';
 import { ProductoTelefonia } from 'src/app/models/ProductoTelefonia';
 import { RangoAntiguedad } from 'src/app/models/RangoAntiguedad';
 import { RangoCantidadProductos } from 'src/app/models/RangoCantidadProductos';
+import { ClienteService } from 'src/app/services/cliente.service';
 import { ParametrosCupoCreditoService } from 'src/app/services/parametros-cupo-credito.service';
+import { ReciboService } from 'src/app/services/recibo.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 import { ValidatorsMessage } from 'src/app/validatorsMessage';
 
@@ -39,7 +41,8 @@ export class ConfigVariblesCreditoComponent implements OnInit {
   public nombrePais = ""
   public valorPunto =0;
 
-  constructor(private formBuilder: FormBuilder, private alertService: AlertBannerService, private parametrosService: ParametrosCupoCreditoService) {
+  constructor(private formBuilder: FormBuilder, private alertService: AlertBannerService, 
+    private parametrosService: ParametrosCupoCreditoService, private clienteService:ClienteService, private reciboService:ReciboService) {
     this.formG = this.generateForm();
     this.messageError = new ValidatorsMessage();
     localStorage.removeItem("client");
@@ -413,17 +416,35 @@ export class ConfigVariblesCreditoComponent implements OnInit {
 
 
 
+ExecuteGenerarCupo():void{
+  this.clienteService.ExecuteProcesoMasivoGenerarCupo().subscribe(()=>{
+    this.alertService.messageSuccesTransaction();
+  }, err => {
+    if (err.status === 404) {
+      this.alertService.messageErrorTransaction("No se pudo ejecutar el proceso masivo");
+      return;
+    } else if (err.status === 500) {
+      this.alertService.messageErrorSystem();
+    }
+  })
+}
 
 
+ExecuteGenerarRecibos():void{
+  
+  this.reciboService.ExecuteGenerarRecibos().subscribe(()=>{
+    this.alertService.messageSuccesTransaction();
+  }, err => {
+    if (err.status === 404) {
+      this.alertService.messageErrorTransaction("No se pudo ejecutar el proceso masivo");
+      return;
+    } else if (err.status === 500) {
+      this.alertService.messageErrorSystem();
+    }
+  })
 
 
-
-
-
-
-
-
-
+}
 
 
 

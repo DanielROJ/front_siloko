@@ -34,6 +34,8 @@
                                 [disabled]="getFc('idPais').errors">Buscar</button>
                         </div>
                     </div>
+
+                  
                 </div>
 
             </div>
@@ -162,7 +164,7 @@
                     <div class="row item-control">
                         <div class="col">
                             <div>
-                                <h6 class="item-title">Estrato economico</h6>
+                                <h6 class="item-title">Estrato económico</h6>
                             </div>
                         </div>
 
@@ -202,7 +204,7 @@
                     <div class="row item-control">
                         <div class="col">
                             <div>
-                                <h6 class="item-title">Rango antiguedad</h6>
+                                <h6 class="item-title">Rango antigüedad</h6>
                             </div>
                         </div>
                         <div class="col">
@@ -240,7 +242,7 @@
                     <div class="row item-control">
                         <div class="col">
                             <div>
-                                <h6 class="item-title">Producto telefonia</h6>
+                                <h6 class="item-title">Producto telefonía</h6>
                             </div>
                         </div>
 
@@ -314,7 +316,12 @@
 
                     </div>
 
-
+                    <div class="row d-flex justify-content-center" style="margin-bottom: 2.5%;">
+                     
+                            <button style="margin-left: 2%;" (click)="ExecuteGenerarCupo()"  mat-raised-button color="accent">Proceso masivo, Generar cupo</button>
+                            <button style="margin-left: 2%;" (click)="ExecuteGenerarRecibos()" mat-raised-button color="accent">Proceso masivo, Generar recibos</button>
+                      
+                    </div>
 
 
 

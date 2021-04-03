@@ -12,6 +12,7 @@ export class UrlsApi {
     public readonly setGenerarCupo = String(this.host + "/cliente/cupoCredito/generar")
     public readonly setAsignarCupoManual = String(this.host + "/cliente/cupoCredito/manual")
     public readonly getClienteProductosTel = String(this.host + "/cliente/productosTel")
+    public readonly ExecuteProcesoGenerarCupo = String(this.host + "/cliente/masivo")
 
     //------------------------------END-POINT---Solicitud--Credito----------------------////////////
     public readonly  setGenerarSolicitudCredito = String(this.host+"/solicitudCredito/generar")
@@ -52,4 +53,7 @@ export class UrlsApi {
      //------------------------------END-POINT---Producto credito----------------------////////////
      public readonly getProductoCreditoBySilokoCode = String(this.host + "/productoCredito/codigoSiloko");
 
+     //------------------------------END-POINT---Recibos----------------------////////////
+     public readonly  getListRecibosByIdClient = String(this.host+"/recibo/cliente/list") 
+     public readonly ExecuteProcesoGenerarRecibos = String(this.host+"/recibo/masivo")
 }
