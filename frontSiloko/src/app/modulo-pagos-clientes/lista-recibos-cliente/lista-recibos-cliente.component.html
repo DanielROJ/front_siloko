@@ -17,35 +17,40 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             Fecha Recibo
                         </th>
-                        <td mat-cell class="align-middle" *matCellDef="let row">{{row.dateRequest | date}}</td>
+                        <td mat-cell class="align-middle" *matCellDef="let row">{{row.dateGenerated | date}}</td>
                     </ng-container>
 
 
                     <!-- Number Column -->
                     <ng-container matColumnDef="codigoRecibo">
                         <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>#Código Recibo</th>
-                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.codeCredito}}</td>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">#{{row.id}}</td>
                     </ng-container>
 
                     <!-- Title Column -->
                     <ng-container matColumnDef="totalp">
                         <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Total a pagar planes telefonicos</th>
-                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.product.nameProduct}}</td>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.valTotalProduct|currency}}</td>
                     </ng-container>
 
                     <!-- State Column -->
                     <ng-container matColumnDef="totalc">
                         <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Total a pagar créditos</th>
-                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.product.valueProduct|currency}}</td>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.valTotalCuotaCredit|currency}}</td>
                     </ng-container>
 
 
                     <ng-container matColumnDef="total">
                         <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>Total a pagar</th>
-                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.status.status}}</td>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">{{row.total|currency}}</td>
                     </ng-container>
 
-          
+                    <ng-container matColumnDef="accion">
+                        <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>Acción</th>
+                        <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">
+                            <button mat-raised-button color="accent">Detalle y Pago</button>
+                        </td>
+                    </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row  class="align-middle" *matRowDef="let row; columns: displayedColumns;"></tr>
