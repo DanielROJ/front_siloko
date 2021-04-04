@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Cliente } from 'src/app/models/Cliente';
 import { Recibo } from 'src/app/models/Recibo';
 import { ReciboService } from 'src/app/services/recibo.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
+import { DetalleReciboClienteComponent } from '../Dialogs/detalle-recibo-cliente/detalle-recibo-cliente.component';
 
 @Component({
   selector: 'app-lista-recibos-cliente',
@@ -31,7 +33,7 @@ export class ListaRecibosClienteComponent implements OnInit {
 
 
 
-  constructor(private reciboService:ReciboService,private alertBanner: AlertBannerService) {
+  constructor(private reciboService:ReciboService,private alertBanner: AlertBannerService, private matDialog:MatDialog) {
     this.cliente = <Cliente> JSON.parse(localStorage.getItem("client"));
    }
 
@@ -67,6 +69,17 @@ export class ListaRecibosClienteComponent implements OnInit {
       } else if (err.status === 500) {
         this.alertBanner.messageErrorSystem();
       }
+    })
+  }
+
+
+
+  pagoRecibo(recibo):void{
+    console.log(recibo)
+    this.matDialog.open(DetalleReciboClienteComponent,{
+      data:recibo,
+      width:"800px",
+      closeOnNavigation:false
     })
   }
 

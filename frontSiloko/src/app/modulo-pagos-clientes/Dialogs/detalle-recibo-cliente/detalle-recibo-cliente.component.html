@@ -1,25 +1,101 @@
 <h1 mat-dialog-title>Detalle Recibo</h1>
 <div mat-dialog-content>
 
- <div class="container">
+  <div class="container-fluid">
+    <h4 style="margin-top: 2.5%;">Planes de Telefonia</h4>
     <div class="row">
-        <h4>Planes de Telefonia</h4>
-        <div class="col-5">
-            
+
+      <div class="col-8">
+        <div *ngFor="let item of listClienteProductosTel" class="row">
+          <div class="col-5">
+            {{item.productTel.nameProduct}}
+          </div>
+          <div class="col-5">
+            {{item.productTel.numberMinutes}} Minutos
+          </div>
+          <div class="col-2">
+            {{item.priceProduct|currency}}
+          </div>
         </div>
-        
-        <div class="col-7">
+        <div style="margin-top: 2.5%;" class="row">
+          <div class="col-10">
+            <h4>Pago total: </h4>
+          </div>
+
+          <div class="col-2">
+            {{totalCreditos | currency}}
+          </div>
 
         </div>
+      </div>
 
+      <div class="col-4">
 
-
+       
+      </div>
     </div>
-   
+
+    
+    <h4 style="margin-top: 2.5%;">Creditos Siloko Credit</h4>
+    <div class="row">
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2">
+           <h6>#ID CREDITO</h6>
+          </div>
+          <div class="col-2">
+            <h6>Producto</h6>
+          </div>
+          <div class="col-2">
+            <h6>Total deuda</h6>
+          </div>
+          <div class="col-2">
+            <h6>Cuota a pagar</h6>
+          </div>
+          <div class="col-2">
+            <h6>Número de cuota</h6>
+          </div>
+          <div class="col-2">
+            <h6>Total cuotas</h6>
+          </div>
+        </div>
+        <div *ngFor="let item of listSolicitudesCredito" class="row">
+          <div class="col-2">
+            {{item.codeCredito}}
+          </div>
+          <div class="col-2">
+            {{item.product.nameProduct}} 
+          </div>
+          <div class="col-2">
+            {{calculaTotalDeuda(item)| currency}}
+          </div>
+          <div class="col-2">
+            {{item.product.valueProduct/item.numFees|currency}}
+          </div>
+          <div class="col-2">
+            {{item.numFeesGenerated}}
+          </div>
+          <div class="col-2">
+            {{item.numFees}}
+          </div>
+
+        </div>
+        <div class="row" style="margin-top: 2.5%;">
+          <div class="col-6">
+            <h4>Pago total: </h4>
+          </div>
+
+          <div class="col-6">
+            {{totalCreditos|currency}}
+          </div>
+
+        </div>
+      </div>
 
 
 
-</div>
+  </div>
 
 
 

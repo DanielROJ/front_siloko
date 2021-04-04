@@ -48,7 +48,7 @@
                     <ng-container matColumnDef="accion">
                         <th mat-header-cell  style="text-align: center;" *matHeaderCellDef>Acción</th>
                         <td mat-cell class="align-middle" style="text-align: center;" *matCellDef="let row">
-                            <button mat-raised-button color="accent">Detalle y Pago</button>
+                            <button mat-raised-button [disabled]="row.statusPay === 1" (click)="pagoRecibo(row)" color="accent">Detalle y Pago</button>
                         </td>
                     </ng-container>
 

@@ -56,4 +56,6 @@ export class UrlsApi {
      //------------------------------END-POINT---Recibos----------------------////////////
      public readonly  getListRecibosByIdClient = String(this.host+"/recibo/cliente/list") 
      public readonly ExecuteProcesoGenerarRecibos = String(this.host+"/recibo/masivo")
+     public readonly getListSolicitudCreditoRecibo = String(this.host+"/recibo/solicitudes/list")
+     public readonly getListProductosRecibo = String(this.host+"/recibo/productos/list")
 }

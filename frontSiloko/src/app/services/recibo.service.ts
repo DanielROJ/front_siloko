@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlsApi } from 'src/urls-api';
+import { ClienteProductosTel } from '../models/ClienteProductosTel';
+import { SolicitudCredito } from '../models/SolicitudCredito';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,15 @@ export class ReciboService {
      return this.http.post(this.urlProvider.ExecuteProcesoGenerarRecibos,{},{headers:this.headers});
    }
 
+
+   public getProductosRecibos(idRecibo:number):Observable<ClienteProductosTel[]>{
+     return this.http.get<ClienteProductosTel[]>(this.urlProvider.getListProductosRecibo+"?idRecibo="+idRecibo,{headers:this.headers});
+   }
+
+
+   public getSolicitudesCredito(idRecibo:number):Observable<SolicitudCredito[]>{
+     return this.http.get<SolicitudCredito[]>(this.urlProvider.getListSolicitudCreditoRecibo+"?idRecibo="+idRecibo,{headers:this.headers});
+   }
 
 
 

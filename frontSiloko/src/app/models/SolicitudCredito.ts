@@ -12,6 +12,7 @@ export interface SolicitudCredito {
     datefinalRequest:Date;
     numFees:number;
     numFeesPaid:number;
+	numFeesGenerated: number,
 	dateLastPaid:Date;
 	client:Cliente;
 	product:ProductoCredito;
