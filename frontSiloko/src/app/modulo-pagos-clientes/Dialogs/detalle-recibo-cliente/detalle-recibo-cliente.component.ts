@@ -35,6 +35,8 @@ export class DetalleReciboClienteComponent implements OnInit {
     let idRecibo = this.data.id
     this.reciboService.getProductosRecibos(idRecibo).subscribe((response)=>{
       this.listClienteProductosTel = <ClienteProductosTel[]> response;
+      console.log(response)
+      
     }, err => {
       if (err.status === 404 || err.status === 400) {
         this.alertBanner.messageErrorTransaction("")
