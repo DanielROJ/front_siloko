@@ -58,4 +58,10 @@ export class UrlsApi {
      public readonly ExecuteProcesoGenerarRecibos = String(this.host+"/recibo/masivo")
      public readonly getListSolicitudCreditoRecibo = String(this.host+"/recibo/solicitudes/list")
      public readonly getListProductosRecibo = String(this.host+"/recibo/productos/list")
+
+     
+     //------------------------------END-POINT---Login----------------------////////////
+     public readonly authFuncionario= String(this.host+"/login/funcionario") 
+     public readonly authFuncionarioAlm= String(this.host+"/login/funcionarioAlmacen") 
+     public readonly authCliente= String(this.host+"/login/cliente") 
 }

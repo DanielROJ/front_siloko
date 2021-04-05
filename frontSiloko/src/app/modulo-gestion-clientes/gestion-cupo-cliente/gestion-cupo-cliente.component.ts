@@ -27,6 +27,7 @@ export class GestionCupoClienteComponent implements OnInit {
     this.cliente = <Cliente>JSON.parse(localStorage.getItem("client"));
     this.cupoCredito = this.cliente.credit;
     this.moneda = this.cliente.city.country.typeCoin;
+    this.funcionario = <Funcionario>  JSON.parse(localStorage.getItem("employ"))
   }
 
   ngOnInit(): void {
@@ -39,7 +40,8 @@ export class GestionCupoClienteComponent implements OnInit {
 
 
   BloquearCupo(): void {
-    this.clienteService.setBloquearCupoCredito(this.cliente.id, 2).subscribe(data => {
+   
+    this.clienteService.setBloquearCupoCredito(this.cliente.id, this.funcionario.id).subscribe(data => {
       this.cupoCredito = <CupoCredito>data;
       this.cliente.credit = <CupoCredito>data;
 
@@ -59,7 +61,7 @@ export class GestionCupoClienteComponent implements OnInit {
 
 
   DesbloquearCupo(): void {
-    this.clienteService.setDesbloquearCupoCredito(this.cliente.id, 2).subscribe(data => {
+    this.clienteService.setDesbloquearCupoCredito(this.cliente.id, this.funcionario.id).subscribe(data => {
       this.cupoCredito = <CupoCredito>data;
       this.cliente.credit = <CupoCredito>data;
 
@@ -79,7 +81,7 @@ export class GestionCupoClienteComponent implements OnInit {
 
 
   GenerarCupoAutmatico(): void {
-    this.clienteService.setGenerarCupoCredito(this.cliente.id, 2).subscribe(data => {
+    this.clienteService.setGenerarCupoCredito(this.cliente.id, this.funcionario.id).subscribe(data => {
       this.cupoCredito = <CupoCredito>data;
       this.cliente.credit = <CupoCredito>data;
 

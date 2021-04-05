@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CupoCredito } from 'src/app/models/CupoCredito';
+import { Funcionario } from 'src/app/models/Funcionario';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
 
@@ -33,7 +34,8 @@ export class CupoManualComponent implements OnInit {
       let valor = Number(this.formG.get("setSaldo").value)
       let cupo = <CupoCredito> {id:this.data.credito};
       cupo.totalSizeCredit = valor;
-      this.clienteService.setAsginarCupoCreditoManual(2,cupo).subscribe(data=>{
+      let funcionario = <Funcionario>  JSON.parse(localStorage.getItem("employ"))
+      this.clienteService.setAsginarCupoCreditoManual(funcionario.id,cupo).subscribe(data=>{
         this.dialogRef.close({ data: <CupoCredito> data });
         this.alertService.messageSuccesTransaction();
       },err=>{

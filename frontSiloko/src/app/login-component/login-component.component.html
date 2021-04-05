@@ -15,6 +15,7 @@
             <mat-form-field color="accent">
                 <input type="password" formControlName="code" matInput placeholder="Codigo / Cedula" />
                 <mat-error *ngIf="hasErros('code') && getFc('code').errors.required">{{messageError.getMessageRequired("(codigo/cedula)")}}</mat-error>
+                <mat-error *ngIf="hasErros('code') && getFc('code').errors.pattern">{{messageError.getMessageRequiredNumber("(codigo/cedula)")}}</mat-error>
             </mat-form-field>
             <div style="padding: 12px 0px 0px 0px;">
             <label id="example-radio-group-label">Seleccione el tipo usuario:</label>

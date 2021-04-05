@@ -77,7 +77,7 @@ export class GenerarSolicitudComponent implements OnInit {
   public GenerarSolicitud():void{
 
     let cliente = <Cliente> JSON.parse(localStorage.getItem("client"))
-    let funcionario = <Funcionario> {id:2}
+    let funcionario = <Funcionario>  JSON.parse(localStorage.getItem("employ"))
     let solicitud = <SolicitudCredito> {
       client:cliente,
       employManager: funcionario,

@@ -27,6 +27,7 @@ import { ProductoCreditoService } from '../services/producto-credito.service';
 import { SolicitudCreditoService } from '../services/solicitud-credito.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ReciboService } from '../services/recibo.service';
+import { LoginService } from '../services/login.service';
 
 @NgModule({
   declarations: [PerfilComponentComponent, VistaGeneralComponent, FooterComponent],
@@ -58,6 +59,13 @@ import { ReciboService } from '../services/recibo.service';
     MatTabsModule,
     MatAutocompleteModule,
     MatPaginatorModule],
-    providers:[AlertBannerService,ClienteService,ParametrosCupoCreditoService, ProductoCreditoService, SolicitudCreditoService,ReciboService]
+    providers:[
+      AlertBannerService,
+      ClienteService,
+      ParametrosCupoCreditoService, 
+      ProductoCreditoService, 
+      SolicitudCreditoService,
+      ReciboService,
+      LoginService]
 })
 export class ShareModule { }
