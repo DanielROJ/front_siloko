@@ -7,15 +7,15 @@ export class ValidatorsMessage {
     }
 
     public  getMessageEmailError():string{
-        return "El correo electronico es invalido";
+        return "El correo electrónico es inválido";
     }
 
     public  getMessageEmailRequired():string{
-        return "El correo electronico es obligatorio";
+        return "El correo electrónico es obligatorio";
     }
 
     public   getMessageRequiredNumber(nombreCampo:string):string{
-        return "El campo "+nombreCampo+" debe ser numerico";
+        return "El campo "+nombreCampo+" debe ser numérico";
     }
 
 }

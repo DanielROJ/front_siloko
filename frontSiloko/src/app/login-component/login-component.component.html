@@ -5,7 +5,7 @@
         </mat-card-title>
         <mat-card-content >
             <mat-form-field color="accent">
-                <input type="email" formControlName="email" matInput placeholder="Correo electronico">
+                <input type="email" formControlName="email" matInput placeholder="Correo electrónico">
                 
                 <mat-error *ngIf="hasErros('email')&& getFc('email').errors.required">{{messageError.getMessageEmailRequired()}}</mat-error>
                 <mat-error *ngIf="hasErros('email')&& getFc('email').errors.pattern">{{messageError.getMessageEmailError()}}</mat-error>
@@ -13,15 +13,15 @@
             </mat-form-field>
             <br />
             <mat-form-field color="accent">
-                <input type="password" formControlName="code" matInput placeholder="Codigo / Cedula" />
-                <mat-error *ngIf="hasErros('code') && getFc('code').errors.required">{{messageError.getMessageRequired("(codigo/cedula)")}}</mat-error>
-                <mat-error *ngIf="hasErros('code') && getFc('code').errors.pattern">{{messageError.getMessageRequiredNumber("(codigo/cedula)")}}</mat-error>
+                <input type="password" formControlName="code" matInput placeholder="Código / Cedula" />
+                <mat-error *ngIf="hasErros('code') && getFc('code').errors.required">{{messageError.getMessageRequired("(código/cedula)")}}</mat-error>
+                <mat-error *ngIf="hasErros('code') && getFc('code').errors.pattern">{{messageError.getMessageRequiredNumber("(código/cedula)")}}</mat-error>
             </mat-form-field>
             <div style="padding: 12px 0px 0px 0px;">
             <label id="example-radio-group-label">Seleccione el tipo usuario:</label>
             <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"  formControlName="rol" required>
                 <mat-radio-button value="rol1" class="example-radio-button" >Funcionario SILOKO</mat-radio-button>
-                <mat-radio-button  value="rol2" class="example-radio-button">Funcionario Almacen Convenio</mat-radio-button>
+                <mat-radio-button  value="rol2" class="example-radio-button">Funcionario Almacén Convenio</mat-radio-button>
                 <mat-radio-button  value="rol3" class="example-radio-button">Cliente SILOKO</mat-radio-button>
             </mat-radio-group>
             </div>
