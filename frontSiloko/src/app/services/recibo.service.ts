@@ -24,6 +24,7 @@ export class ReciboService {
    public ExecuteGenerarRecibos():Observable<any>{
      return this.http.post(this.urlProvider.ExecuteProcesoGenerarRecibos,{},{headers:this.headers});
    }
+   
 
 
    public getProductosRecibos(idRecibo:number):Observable<ClienteProductosTel[]>{

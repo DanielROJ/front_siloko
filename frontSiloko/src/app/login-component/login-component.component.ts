@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cliente } from '../models/Cliente';
+import { FuncionarioAlmacen } from '../models/FuncioanarioAlmacen';
 import { Funcionario } from '../models/Funcionario';
 import { LoginService } from '../services/login.service';
 import { AlertBannerService } from '../share/services_share/alert-banner.service';
@@ -82,8 +83,8 @@ export class LoginComponentComponent implements OnInit {
        
       } else if (this.getFc("rol").value === "rol2") {
         this.loginService.AuthFuncionarioAlmacen(email,codigo).subscribe(data=>{
-          let funcionario = <Funcionario> data;
-          localStorage.setItem("employ",JSON.stringify(funcionario))
+          let funcionario = <FuncionarioAlmacen> data;
+          localStorage.setItem("employA",JSON.stringify(funcionario))
           this.alert.messageLogin(false).then(() => {
             this.formG.reset();
             this.formG = this.generateForm();    

@@ -63,5 +63,6 @@ export class UrlsApi {
      //------------------------------END-POINT---Login----------------------////////////
      public readonly authFuncionario= String(this.host+"/login/funcionario") 
      public readonly authFuncionarioAlm= String(this.host+"/login/funcionarioAlmacen") 
-     public readonly authCliente= String(this.host+"/login/cliente") 
+     public readonly authCliente= String(this.host+"/login/cliente")
+      
 }

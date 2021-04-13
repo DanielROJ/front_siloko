@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FuncionarioAlmacen } from 'src/app/models/FuncioanarioAlmacen';
 import { SolicitudCredito } from 'src/app/models/SolicitudCredito';
 import { SolicitudCreditoService } from 'src/app/services/solicitud-credito.service';
 import { AlertBannerService } from 'src/app/share/services_share/alert-banner.service';
@@ -74,8 +75,8 @@ export class PagoProductoComponent implements OnInit {
     if(this.getFc("nCuotas").valid && this.solicitdCredito){
       let cuotas = Number(this.getFc("nCuotas").value);
       let idSolicitud = this.solicitdCredito.id;
-      let idFuncionarioAlm = 1 //Este  se dbe sacar de la cookie de inicio de sesion
-      this.solicitudService.setFinanciacionSolicitudCredito(idSolicitud,idFuncionarioAlm,cuotas).subscribe(data=>{
+      let funcionarioAlm =  <FuncionarioAlmacen> JSON.parse(localStorage.getItem("employA"))
+      this.solicitudService.setFinanciacionSolicitudCredito(idSolicitud,funcionarioAlm.id,cuotas).subscribe(data=>{
         this.alertService.messageSuccesFinanciar();
         this.solicitdCredito = null
         this.formG.reset()
